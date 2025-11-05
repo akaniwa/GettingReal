@@ -31,17 +31,15 @@ namespace DigitalKasseSystem
         }
 
         // Methods to add items from the basket
-        public void AddToBasket(string itemNumber)
+        public void AddToBasket(Item item)
         {
-            // To be implemented
-            // Need Item Repository to get Item by itemNumber
+            basket.Add(item);
         }
 
         // Methods to remove items from the basket
-        public void RemoveFromBasket(string itemNumber)
+        public void RemoveFromBasket(string itemNumber) // Maybe change later to remove instance instead of by item number
         {
-            // To be implemented
-            // Need Item Repository to get Item by itemNumber
+            basket.RemoveAll(i => i.ItemNumber.ToString() == itemNumber);
         }
 
         public override string ToString() // Change later for saving functionality
