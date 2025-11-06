@@ -8,5 +8,23 @@ namespace DigitalKasseSystem
 {
     class Controller
     {
+        public void NewSale()
+        {
+
+        }
+
+        public double AddItemToSale(int itemNumber)
+        {
+            return 0.0;
+        }
+
+        public double ChoosePaymentMethod(PaymentMethod paymentMethod)
+        {
+            return 0.0;
+        }
+
+        public void EndSale()
+        {
+        }
     }
 }
