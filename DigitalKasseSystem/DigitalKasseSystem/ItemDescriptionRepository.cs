@@ -8,5 +8,16 @@ namespace DigitalKasseSystem
 {
     internal class ItemDescriptionRepository
     {
+        List<ItemDescription> itemDescription;
+
+        public void AddItemDescription(ItemDescription itemDescription)
+        {
+
+        }
+
+        public void GetItemDescription(int itemNumber) 
+        { 
+        
+        }
     }
 }
