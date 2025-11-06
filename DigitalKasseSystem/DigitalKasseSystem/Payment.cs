@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,9 +19,17 @@ namespace DigitalKasseSystem
         }
 
         // Method to update the amount to be paid
-        public void UpdateAmount(double amount) // Maybe needs to return something later
+        public double UpdateAmount(double amount)
         {
-            this.amount = amount;
+            if (paymentMethod == PaymentMethod.Kontant)
+            {
+                this.amount = Math.Round(amount, 2, MidpointRounding.AwayFromZero); // Rounding for .5 values
+            }
+            else
+            {
+                this.amount = amount;
+            }
+            return this.amount;
         }
     }
 }

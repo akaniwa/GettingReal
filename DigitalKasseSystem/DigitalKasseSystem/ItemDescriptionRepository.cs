@@ -8,16 +8,17 @@ namespace DigitalKasseSystem
 {
     internal class ItemDescriptionRepository
     {
-        List<ItemDescription> itemDescription;
+        List<ItemDescription> itemDescriptions = new();
 
         public void AddItemDescription(ItemDescription itemDescription)
         {
-
+            itemDescriptions.Add(itemDescription);
         }
 
-        public void GetItemDescription(int itemNumber) 
+        public ItemDescription GetItemDescription(int itemNumber) 
         { 
-        
+            ItemDescription item = itemDescriptions.Find(item => item.ItemNumber == itemNumber);
+            return item;
         }
     }
 }

@@ -9,11 +9,11 @@ namespace DigitalKasseSystem
     class Sale
     {
         public int SaleNumber { get; }
+        public double total { get; private set; }
         public Payment Payment;
         DateTime startTime;
         DateTime endTime;
         List<Item> basket;
-        double total;
 
         // Constructor for Sale class, starting a new sale
         public Sale(int saleNumber)
@@ -31,9 +31,10 @@ namespace DigitalKasseSystem
         }
 
         // Methods to add items from the basket
-        public void AddToBasket(int itemNumber)
+        public void AddToBasket(int itemNumber, double price)
         {
             basket.Add(new Item(itemNumber));
+            total += price;
         }
 
         // Methods to remove items from the basket
