@@ -23,9 +23,9 @@ namespace DigitalKasseSystem
         {
             if (paymentMethod == PaymentMethod.Kontant)
             {
-                this.amount = amount % 1;
+                this.amount = Math.Round(amount, 2, MidpointRounding.AwayFromZero); // Rounding for .5 values
             }
-            if (paymentMethod == PaymentMethod.MobilePay)
+            else
             {
                 this.amount = amount;
             }

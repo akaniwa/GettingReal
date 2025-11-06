@@ -38,7 +38,7 @@ namespace DigitalKasseSystem
             ItemNumber = itemNumber;
             this.ItemName = itemName;
             this.Price = price;
-            Category = "Missing";
+            Category = "No category";
         }
 
         // Override ToString for easy save functionality
