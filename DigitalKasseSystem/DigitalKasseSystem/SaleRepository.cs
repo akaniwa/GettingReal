@@ -8,5 +8,16 @@ namespace DigitalKasseSystem
 {
     class SaleRepository
     {
+        private List<Sale> sales = new List<Sale>();
+        
+        public void AddSale(Sale sale)
+        {
+            sales.Add(sale);
+        }
+
+        public int GetSalesCount()
+        {
+            return sales.Count;
+        }
     }
 }

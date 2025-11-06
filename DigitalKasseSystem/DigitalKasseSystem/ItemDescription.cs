@@ -10,41 +10,41 @@ namespace DigitalKasseSystem
     class ItemDescription
     {
         public int ItemNumber { get; }
-        string itemName;
-        double price;
-        string category;
-        BitmapImage picture; // Optional - maybe string with path would be better
+        public string ItemName { get; }
+        public double Price { get; }
+        public string Category { get; }
+        public BitmapImage Picture { get; } // Optional - maybe string with path would be better
 
         // Constructor overloads for different levels of detail
         public ItemDescription(int itemNumber, string itemName, double price, string category, BitmapImage picture)
         {
             ItemNumber = itemNumber;
-            this.itemName = itemName;
-            this.price = price;
-            this.category = category;
-            this.picture = picture;
+            this.ItemName = itemName;
+            this.Price = price;
+            this.Category = category;
+            this.Picture = picture;
         }
 
         public ItemDescription(int itemNumber, string itemName, double price, string category)
         {
             ItemNumber = itemNumber;
-            this.itemName = itemName;
-            this.price = price;
-            this.category = category;
+            this.ItemName = itemName;
+            this.Price = price;
+            this.Category = category;
         }
 
         public ItemDescription(int itemNumber, string itemName, double price)
         {
             ItemNumber = itemNumber;
-            this.itemName = itemName;
-            this.price = price;
-            category = "Missing";
+            this.ItemName = itemName;
+            this.Price = price;
+            Category = "Missing";
         }
 
         // Override ToString for easy save functionality
         public override string ToString()
         {
-            return $"{ItemNumber};{itemName};{price};{category};{picture}";
+            return $"{ItemNumber};{ItemName};{Price};{Category};{Picture}";
         }
     }
 }
