@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace DigitalKasseSystem
+namespace DigitalKasseSystem.Models
 {
     class ItemDescription
     {
@@ -19,25 +19,25 @@ namespace DigitalKasseSystem
         public ItemDescription(int itemNumber, string itemName, double price, string category, BitmapImage picture)
         {
             ItemNumber = itemNumber;
-            this.ItemName = itemName;
-            this.Price = price;
-            this.Category = category;
-            this.Picture = picture;
+            ItemName = itemName;
+            Price = price;
+            Category = category;
+            Picture = picture;
         }
 
         public ItemDescription(int itemNumber, string itemName, double price, string category)
         {
             ItemNumber = itemNumber;
-            this.ItemName = itemName;
-            this.Price = price;
-            this.Category = category;
+            ItemName = itemName;
+            Price = price;
+            Category = category;
         }
 
         public ItemDescription(int itemNumber, string itemName, double price)
         {
             ItemNumber = itemNumber;
-            this.ItemName = itemName;
-            this.Price = price;
+            ItemName = itemName;
+            Price = price;
             Category = "No category";
         }
 

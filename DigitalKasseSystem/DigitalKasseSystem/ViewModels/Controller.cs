@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DigitalKasseSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DigitalKasseSystem
+namespace DigitalKasseSystem.ViewModels
 {
     class Controller
     {
