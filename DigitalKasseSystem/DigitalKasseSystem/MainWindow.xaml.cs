@@ -20,5 +20,6 @@ namespace DigitalKasseSystem
         {
             InitializeComponent();
         }
+
     }
 }
