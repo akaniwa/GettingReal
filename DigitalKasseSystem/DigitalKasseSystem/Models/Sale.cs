@@ -8,44 +8,45 @@ namespace DigitalKasseSystem.Models
 {
     class Sale
     {
-        public int SaleNumber { get; }
-        public double total { get; private set; }
-        public Payment Payment;
-        DateTime startTime;
-        DateTime endTime;
-        List<Item> basket;
+        //private fields
+        private int saleNumber;
+        private double total;
+        private PaymentMethod paymentMethod;
+        private DateTime startTime;
+        private DateTime endTime;
+        private List<Item> basket;
 
-        // Constructor for Sale class, starting a new sale
-        public Sale(int saleNumber)
-        {
-            SaleNumber = saleNumber;
-            startTime = DateTime.Now;
-            basket = new List<Item>();
-            total = 0.0;
+        //backing fields
+        private static int _orderNumber;
+
+        //properties
+        public static int OrderNumber 
+        { 
+            get { return _orderNumber; } 
+            set { _orderNumber = value; } 
         }
 
-        // Method to end the sale
-        public void EndSale()
+        //constructor, finalizing an ongoing sale
+        public Sale(int saleNumber, double total, PaymentMethod paymentMethod, DateTime startTime, List<Item> basket)
         {
+            this.saleNumber = saleNumber;
+            this.total = total;
+            this.paymentMethod = paymentMethod;
+            this.startTime = startTime;
             endTime = DateTime.Now;
+            this.basket = basket;
         }
 
-        // Methods to add items from the basket
-        public void AddToBasket(int itemNumber, double price)
+        public override string ToString()
         {
-            basket.Add(new Item(itemNumber));
-            total += price;
-        }
+            string basketContents = "";
+            foreach (Item item in basket)
+            {
+                basketContents += $"{item.ToString()}-";
+            }
+            basketContents.Remove(basketContents.Length - 1);
 
-        // Methods to remove items from the basket
-        public void RemoveFromBasket(int itemNumber) // Maybe change later to remove instance instead of by item number
-        {
-            basket.RemoveAll(i => i.ItemNumber == itemNumber);
-        }
-
-        public override string ToString() // Change later for saving functionality
-        {
-            return base.ToString();
+            return $"{saleNumber};{total};{paymentMethod};{startTime};{endTime};{basketContents}";
         }
     }
 }

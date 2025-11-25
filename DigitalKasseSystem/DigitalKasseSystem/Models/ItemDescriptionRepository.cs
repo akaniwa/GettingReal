@@ -8,17 +8,34 @@ namespace DigitalKasseSystem.Models
 {
     internal class ItemDescriptionRepository
     {
-        List<ItemDescription> itemDescriptions = new();
+        //private fields
+        private List<ItemDescription> itemDescriptions = new List<ItemDescription>();
 
+        //methods
         public void AddItemDescription(ItemDescription itemDescription)
         {
             itemDescriptions.Add(itemDescription);
         }
 
-        public ItemDescription GetItemDescription(int itemNumber) 
+        public void DeleteItemDescription(ItemDescription itemDescription)
+        {
+            itemDescriptions.Remove(itemDescription);
+        }
+
+        //this particular method invalidates itemDescriptions being a private field
+        public List<ItemDescription> GetItemDescriptions() 
         { 
-            ItemDescription item = itemDescriptions.Find(item => item.ItemNumber == itemNumber);
-            return item;
+            return itemDescriptions;
+        }
+
+        public void SaveToFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadFromFile()
+        {
+            throw new NotImplementedException();
         }
     }
 }

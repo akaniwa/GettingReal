@@ -19,5 +19,15 @@ namespace DigitalKasseSystem.Models
         {
             return sales.Count;
         }
+
+        public void SaveToFile()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void LoadFromFile(DateTime date)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

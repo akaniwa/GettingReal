@@ -9,42 +9,42 @@ namespace DigitalKasseSystem.Models
 {
     class ItemDescription
     {
-        public int ItemNumber { get; }
-        public string ItemName { get; }
-        public double Price { get; }
-        public string Category { get; }
-        public BitmapImage Picture { get; } // Optional - maybe string with path would be better
+        //private field
+        private static int itemNumberCount = 0;
 
-        // Constructor overloads for different levels of detail
-        public ItemDescription(int itemNumber, string itemName, double price, string category, BitmapImage picture)
+        //properties
+        public int ItemNumber { get; set; }
+        public string ItemName { get; set; }
+        public string Picture { get; set; }
+        public double Price { get; set; }
+        public string Category { get; set; }
+
+        // Constructor, missing overloads, preferably via chaining?
+        public ItemDescription(List<ItemDescription> itemDescriptions, string itemName, double price, string category, string picture)
         {
-            ItemNumber = itemNumber;
+            List<int> itemNumbers = new List<int>();
+
+            foreach (ItemDescription itemDescription in itemDescriptions)
+            {
+                itemNumbers.Add(itemDescription.ItemNumber);
+            }
+
+            while (!itemNumbers.Contains(itemNumberCount))
+            {
+                itemNumberCount++;
+            }
+
+            ItemNumber = itemNumberCount;
             ItemName = itemName;
             Price = price;
             Category = category;
             Picture = picture;
         }
 
-        public ItemDescription(int itemNumber, string itemName, double price, string category)
-        {
-            ItemNumber = itemNumber;
-            ItemName = itemName;
-            Price = price;
-            Category = category;
-        }
-
-        public ItemDescription(int itemNumber, string itemName, double price)
-        {
-            ItemNumber = itemNumber;
-            ItemName = itemName;
-            Price = price;
-            Category = "No category";
-        }
-
         // Override ToString for easy save functionality
         public override string ToString()
         {
-            return $"{ItemNumber};{ItemName};{Price};{Category};{Picture}";
+            return $"{ItemNumber}_{ItemName}_{Picture}_{Price}_{Category}";
         }
     }
 }

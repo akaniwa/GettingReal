@@ -8,19 +8,25 @@ namespace DigitalKasseSystem.Models
 {
     class Item
     {
-        // Item number property with only a getter
-        public int ItemNumber { get; }
+        //backing field
+        private ItemDescription _itemDescription;
 
-        // Constructor setting item number
-        public Item(int itemNumber)
+        //properties
+        public ItemDescription ItemDescription 
+        { 
+            get { return _itemDescription; }
+        }
+
+        // Constructor, setting a reference to an ItemDescription in an existing ItemDescriptionRepository
+        public Item(ItemDescription itemDescription)
         {
-            ItemNumber = itemNumber;
+            _itemDescription = itemDescription;
         }
 
         // Override ToString for easy save functionality
         public override string ToString()
         {
-            return $"{ItemNumber}";
+            return $"{ItemDescription.ToString}";
         }
     }
 }
