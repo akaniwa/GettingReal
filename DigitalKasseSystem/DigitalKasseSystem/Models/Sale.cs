@@ -8,44 +8,35 @@ namespace DigitalKasseSystem.Models
 {
     class Sale
     {
-        public int SaleNumber { get; }
-        public double total { get; private set; }
-        public Payment Payment;
-        DateTime startTime;
-        DateTime endTime;
-        List<Item> basket;
+        public static int OrderNumber;
+
+        private int saleNumber;
+        private double total;
+        private PaymentMethod paymentMethod;
+        private DateTime startTime;
+        private DateTime endTime;
+        private List<Item> basket;
 
         // Constructor for Sale class, starting a new sale
-        public Sale(int saleNumber)
+        public Sale(int saleNumber, double total, PaymentMethod payment, DateTime startTime, DateTime endTime, List<Item> basket)
         {
-            SaleNumber = saleNumber;
-            startTime = DateTime.Now;
-            basket = new List<Item>();
-            total = 0.0;
-        }
-
-        // Method to end the sale
-        public void EndSale()
-        {
-            endTime = DateTime.Now;
-        }
-
-        // Methods to add items from the basket
-        public void AddToBasket(int itemNumber, double price)
-        {
-            basket.Add(new Item(itemNumber));
-            total += price;
-        }
-
-        // Methods to remove items from the basket
-        public void RemoveFromBasket(int itemNumber) // Maybe change later to remove instance instead of by item number
-        {
-            basket.RemoveAll(i => i.ItemNumber == itemNumber);
+            this.saleNumber = saleNumber;
+            this.total = total;
+            this.paymentMethod = payment;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.basket = basket;
+            OrderNumber++;
         }
 
         public override string ToString() // Change later for saving functionality
         {
-            return base.ToString();
+            string saveString = $"{saleNumber},{total},{paymentMethod},{startTime},{endTime},";
+            foreach (Item item in basket)
+            {
+                saveString += item.ToString() + "-";
+            }
+            return saveString;
         }
     }
 }

@@ -6,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace DigitalKasseSystem.Models
 {
-    class Item
+    public class Item
     {
         // Item number property with only a getter
-        public int ItemNumber { get; }
+        public ItemDescription ItemDescription { get; }
 
         // Constructor setting item number
-        public Item(int itemNumber)
+        public Item(ItemDescription itemDescription)
         {
-            ItemNumber = itemNumber;
+            ItemDescription = itemDescription;
         }
 
         // Override ToString for easy save functionality
         public override string ToString()
         {
-            return $"{ItemNumber}";
+            return $"{ItemDescription.ItemNumber}";
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,44 +8,39 @@ using System.Windows.Media.Imaging;
 
 namespace DigitalKasseSystem.Models
 {
-    class ItemDescription
+    public class ItemDescription
     {
         public int ItemNumber { get; }
         public string ItemName { get; }
         public double Price { get; }
         public string Category { get; }
-        public BitmapImage Picture { get; } // Optional - maybe string with path would be better
+        public string PicturePath { get; } // Optional - maybe string with path would be better
+        private static int ItemNumberCount;
 
         // Constructor overloads for different levels of detail
-        public ItemDescription(int itemNumber, string itemName, double price, string category, BitmapImage picture)
+        public ItemDescription(int itemNumber, string itemName, double price, string category, string picture)
         {
             ItemNumber = itemNumber;
             ItemName = itemName;
             Price = price;
             Category = category;
-            Picture = picture;
+            PicturePath = picture;
+            ItemNumberCount++;
         }
 
-        public ItemDescription(int itemNumber, string itemName, double price, string category)
+        public ItemDescription()
         {
-            ItemNumber = itemNumber;
-            ItemName = itemName;
-            Price = price;
-            Category = category;
-        }
-
-        public ItemDescription(int itemNumber, string itemName, double price)
-        {
-            ItemNumber = itemNumber;
-            ItemName = itemName;
-            Price = price;
+            ItemNumber = ItemNumberCount;
+            ItemName = "Input name";
+            Price = 0;
             Category = "No category";
+            ItemNumberCount++;
         }
 
         // Override ToString for easy save functionality
         public override string ToString()
         {
-            return $"{ItemNumber};{ItemName};{Price};{Category};{Picture}";
+            return $"{ItemNumber};{ItemName};{Price};{Category};{PicturePath}";
         }
     }
 }
