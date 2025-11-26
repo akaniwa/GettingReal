@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DigitalKasseSystem.Models
 {
-    internal class ItemDescriptionRepository
+    public class ItemDescriptionRepository
     {
         List<ItemDescription> itemDescriptions = new();
 
@@ -28,6 +28,11 @@ namespace DigitalKasseSystem.Models
         {
             ItemDescription item = itemDescriptions.Find(item => item.ItemNumber == itemNumber);
             return item;
+        }
+
+        public List<ItemDescription> GetItemDescriptions()
+        {
+            return itemDescriptions;
         }
 
         public void SaveToFile()

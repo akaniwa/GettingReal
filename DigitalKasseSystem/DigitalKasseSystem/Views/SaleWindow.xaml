@@ -38,21 +38,22 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         </Grid>
         <WrapPanel Name="MidWrapPanel" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
             <Button x:Name="Button1" Height="100" Width="100">
-                <Image Name="PølsemixImage" Source="/Images/Uldum Hal Menu billeder/polsemix.png" Height="100" Width="100" />
+                <Image Name="PølsemixImage" Source="/Image/Uldum Hal Menu billeder/polsemix.png" Height="100" Width="100" />
             </Button>
             <Button x:Name="Button2" Height="100" Width="100">
-                <Image Name="FranskHotdogImage" Source="/Images/Uldum Hal Menu billeder/franskHotdog.png" Height="100" Width="100"/>
+                <Image Name="FranskHotdogImage" Source="/Image/Uldum Hal Menu billeder/franskHotdog.png" Height="100" Width="100"/>
             </Button>
             <Button x:Name="Button3" Height="100" Width="100">
                 <Button.Content>
                     <Canvas VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <Image Name="PommesImage" Source="/Images/Uldum Hal Menu billeder/pommesFrits.png" Height="100" Width="100" Canvas.Left="-50" Canvas.Top="-49" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <Image Name="PommesImage" Source="/Image/Uldum Hal Menu billeder/pommesFrits.png" Height="100" Width="100" Canvas.Left="-50" Canvas.Top="-49" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <TextBlock Text="7) Yakitori Kyllingespyd og Kart. Både." Canvas.Left="-49" Canvas.Top="26" VerticalAlignment="Center" Width="98" TextWrapping="Wrap" Height="24" FontSize="8" FontWeight="Medium" HorizontalAlignment="Center" Panel.ZIndex="-1" Padding="1,0,0,0"/>
                     </Canvas>
                 </Button.Content>
             </Button>
         </WrapPanel>
         <StackPanel x:Name="QuickOrderWindow" Grid.Column="0" Orientation="Vertical" Background="LightGray" >
+            <Button Name="ReturnButton" Content="←" FontSize="35" Width="50" Click="ReturnButton_Click" HorizontalAlignment="Left" />
             <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center"/>
         </StackPanel>
     </Grid>

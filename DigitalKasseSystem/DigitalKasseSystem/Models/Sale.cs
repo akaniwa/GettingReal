@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DigitalKasseSystem.Models
 {
-    class Sale
+    public class Sale
     {
         public static int OrderNumber;
 

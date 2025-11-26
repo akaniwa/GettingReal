@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DigitalKasseSystem.Models;
+using DigitalKasseSystem.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,14 +21,21 @@ namespace DigitalKasseSystem.Views
     /// </summary>
     public partial class AssortmentWindow : Window
     {
-        public AssortmentWindow()
+        MainAssortmentViewModel mavm;
+        ItemDescriptionRepository itemDescriptionRepository;
+
+        public AssortmentWindow(ItemDescriptionRepository itemDescriptionRepository)
         {
+            this.itemDescriptionRepository = itemDescriptionRepository;
             InitializeComponent();
+
+            mavm = new MainAssortmentViewModel(itemDescriptionRepository);
+            DataContext = mavm;
         }
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

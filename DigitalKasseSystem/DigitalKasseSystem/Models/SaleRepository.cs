@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DigitalKasseSystem.Models
 {
-    class SaleRepository
+    public class SaleRepository
     {
         private List<Sale> sales = new List<Sale>();
         ItemDescriptionRepository itemDescriptionRepository;

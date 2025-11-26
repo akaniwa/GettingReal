@@ -13,6 +13,14 @@ namespace DigitalKasseSystem.ViewModels
         public List<ItemDescriptionViewModel> ItemDescriptionsVM;
         public ItemDescriptionViewModel SelectedItemDesciprtionVM;
 
+        public MainAssortmentViewModel(ItemDescriptionRepository itemDescriptionRepository)
+        {
+            this.itemDescriptionRepository = itemDescriptionRepository;
+            ItemDescriptionsVM = new List<ItemDescriptionViewModel>();
+            ItemDescription itemDescription = new ItemDescription();
+
+        }
+
         public void SaveAssortment()
         {
             itemDescriptionRepository.SaveToFile();
