@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DigitalKasseSystem.ViewModels
 {
-    class MainSaleViewModel
+    class MainSaleViewModel : INotifyPropertyChanged
     {
         public SaleViewModel CurrentSale;
         public ObservableCollection<ItemDescriptionViewModel> ItemDescriptionsVM { get; set; }
@@ -17,6 +17,7 @@ namespace DigitalKasseSystem.ViewModels
         ItemDescriptionRepository itemDescriptionRepository;
         SaleRepository saleRepository;
 
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public MainSaleViewModel(ItemDescriptionRepository itemDescriptionRepository, SaleRepository saleRepository)
         {

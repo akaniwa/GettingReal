@@ -27,7 +27,7 @@
             <TextBlock Width="10"/>
             <Button Name="ReturnButton" Content="🏠" FontSize="35" Width="50" Click="ReturnButton_Click" />
         </StackPanel>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Path=ItemDescriptionsVM, UpdateSourceTrigger=PropertyChanged}" Margin="10" FontSize="20" Name="AssortmentListBox" SelectedValue="{Binding SelectedItemDescriptionVM, Mode=TwoWay}">
+        <ListBox Grid.Row="1" ItemsSource="{Binding Path=ItemDescriptionsVM}" Margin="10" FontSize="20" Name="AssortmentListBox" SelectedValue="{Binding SelectedItemDescriptionVM, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

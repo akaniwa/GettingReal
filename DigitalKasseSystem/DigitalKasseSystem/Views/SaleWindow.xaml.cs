@@ -23,6 +23,7 @@ namespace DigitalKasseSystem.Views
     {
         ItemDescriptionRepository itemDescriptionRepository;
         SaleRepository saleRepository;
+        MainSaleViewModel mainSaleViewModel;
         public List<ItemDescriptionViewModel> ItemDescriptionsVM;
 
         public SaleWindow(ItemDescriptionRepository itemDescriptionRepository, SaleRepository saleRepository, List<ItemDescriptionViewModel> itemDescriptionViewModels)
@@ -30,8 +31,12 @@ namespace DigitalKasseSystem.Views
             this.itemDescriptionRepository = itemDescriptionRepository;
             this.saleRepository = saleRepository;
             this.ItemDescriptionsVM = itemDescriptionViewModels;
+            mainSaleViewModel = new MainSaleViewModel(itemDescriptionRepository, saleRepository);
             InitializeComponent();
             InitializeAssortmentButtons();
+
+            DataContext = mainSaleViewModel;
+            mainSaleViewModel.NewSale();
         }
 
         private void InitializeAssortmentButtons()
@@ -41,11 +46,12 @@ namespace DigitalKasseSystem.Views
                 foreach (ItemDescriptionViewModel itemVM in ItemDescriptionsVM)
                 {
                     Button btn = new Button();
+                    btn.Name = "ItemButton_" + itemVM.ItemNumber.ToString();
                     btn.Content = itemVM.Name + "\n" + itemVM.Price.ToString("C2");
                     btn.Tag = itemVM;
                     btn.Margin = new Thickness(5);
                     btn.Padding = new Thickness(10);
-                    //btn.Click click = ItemButton_Click;
+                    btn.Click += ItemButton_Click;
                     MidWrapPanel.Children.Add(btn);
                 }
             }
@@ -53,25 +59,24 @@ namespace DigitalKasseSystem.Views
 
         private void ItemButton_Click(object sender, RoutedEventArgs e)
         {
-            Button clickedButton = sender as Button;
-            if (clickedButton != null)
+            if (sender is Button clickedButton)
             {
                 //Name of button would be ItemButton_ + ItemNumber
                 string[] itemParts = clickedButton.Name.ToString().Split('_');
                 Item item = new Item(itemDescriptionRepository.GetItemDescription(int.Parse(itemParts[1])));
-                MainSaleViewModel mainSaleVM = this.DataContext as MainSaleViewModel;
-                mainSaleVM.CurrentSale.Basket.Add(item);
 
                 Button button = new Button();
-                button.Content = item.ItemDescription.ItemName;
+                button.FontSize = 20;
+                button.Content = ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price} kr.") ;
+                button.Height = 80;
+                mainSaleViewModel.CurrentSale.Basket.Add(item);
                 CurrentOrdreWindow.Children.Add(button);
             }
         }
 
-
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void EndSaleButton_Click(object sender, RoutedEventArgs e)

@@ -25,6 +25,7 @@ namespace DigitalKasseSystem.ViewModels
                 {
                     selectedItemDescriptionVM = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(SelectedItemDescriptionVM));
                 }
             }
         }
