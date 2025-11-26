@@ -1,21 +1,59 @@
 ﻿using DigitalKasseSystem.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Media.Imaging;
 
 namespace DigitalKasseSystem.ViewModels
 {
-    public class ItemDescriptionViewModel
+    public class ItemDescriptionViewModel : INotifyPropertyChanged
     {
         private ItemDescription itemDescription;
+        void OnPropertyChanged([CallerMemberName] string? n = null) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(n));
 
-        public int ItemNumber { get; set; }
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public string PicturePath { get; set; }
-        public string Categori { get; set; }
+        public int ItemNumber
+        {
+            get { return itemDescription.ItemNumber; }
+            set { itemDescription.ItemNumber = value; }
+        }
+        public string Name
+        {
+            get { return itemDescription.ItemName; }
+            set { itemDescription.ItemName = value; }
+        }
+        public double Price
+        {
+            get { return itemDescription.Price; }
+            set { itemDescription.Price = value; }
+        }
+        public string PicturePath
+        {
+            get { return itemDescription.PicturePath; }
+            set 
+            { 
+                itemDescription.PicturePath = value;
+                if (!string.IsNullOrEmpty(value))
+                {
+                    Picture = new BitmapImage(new Uri(value, UriKind.RelativeOrAbsolute));
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(Picture));
+                }
+                else
+                {
+                    Picture = new BitmapImage(new Uri("C:\\Users\\marti\\OneDrive\\Documents\\Datamatiker\\Git\\GettingReal\\DigitalKasseSystem\\DigitalKasseSystem\\Image\\MissingImageIcon.png"));
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(Picture));
+                }
+            }
+        }
+        public string Categori
+        {
+            get { return itemDescription.Category; }
+            set { itemDescription.Category = value; }
+        }
+        public BitmapImage Picture;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public ItemDescriptionViewModel(ItemDescription itemDescription)
         {

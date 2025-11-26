@@ -1,5 +1,6 @@
 ﻿using DigitalKasseSystem.Models;
 using DigitalKasseSystem.ViewModels;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,6 +35,23 @@ namespace DigitalKasseSystem.Views
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
+            mavm.SaveAssortment();
+            DialogResult = true;
+            this.Close();
+        }
+
+        private void ChoosePicButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpg;*.jpeg;*.bmp)|*.png;*.jpg;*.jpeg;*.bmp|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                if (mavm.SelectedItemDescriptionVM != null)
+                {
+                    PicturePathBox.Text = openFileDialog.FileName;
+                    mavm.SelectedItemDescriptionVM.PicturePath = openFileDialog.FileName;
+                }
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
 
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ScrollViewer x:Name="CurrentOrdreScrollViewer" VerticalScrollBarVisibility="Auto" Grid.Row="0">
@@ -32,8 +32,8 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Text="" Width="10" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <Button Grid.Row="1" x:Name="EndSaleButton" Content="Afslut" Height="90" FontSize="24"/>
-                <Button Grid.Row="1" x:Name="NotEndSaleButton" Content="Fortryd" Height="60" FontSize="24"/>
+                <Button Grid.Row="1" x:Name="EndSaleButton" Content="Afslut" Height="90" FontSize="24" Click="EndSaleButton_Click"/>
+                <Button Grid.Row="1" x:Name="NotEndSaleButton" Content="Fortryd" Height="60" FontSize="24" Click="NotEndSaleButton_Click"/>
             </StackPanel>
         </Grid>
         <WrapPanel Name="MidWrapPanel" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
@@ -52,9 +52,19 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
                 </Button.Content>
             </Button>
         </WrapPanel>
-        <StackPanel x:Name="QuickOrderWindow" Grid.Column="0" Orientation="Vertical" Background="LightGray" >
-            <Button Name="ReturnButton" Content="←" FontSize="35" Width="50" Click="ReturnButton_Click" HorizontalAlignment="Left" />
-            <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center"/>
-        </StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="59*"/>
+                <RowDefinition Height="1005*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Background="LightGray" Grid.Row="0">
+                <Button Name="ReturnButton" Content="🏠" FontSize="35" Width="50" Click="ReturnButton_Click" HorizontalAlignment="Left" />
+                <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel x:Name="QuickOrderWindow" Grid.Column="0" Orientation="Vertical" Background="LightGray" Grid.Row="1">
+
+            </StackPanel>
+        </Grid>
+        <StackPanel/>
     </Grid>
 </Window>

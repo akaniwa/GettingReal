@@ -23,25 +23,21 @@ namespace DigitalKasseSystem.Views
     {
         ItemDescriptionRepository itemDescriptionRepository;
         SaleRepository saleRepository;
-        public List<ItemDescriptionViewModel> ItemDescriptionsVM = new();
+        public List<ItemDescriptionViewModel> ItemDescriptionsVM;
 
-        public SaleWindow(ItemDescriptionRepository itemDescriptionRepository, SaleRepository saleRepository)
+        public SaleWindow(ItemDescriptionRepository itemDescriptionRepository, SaleRepository saleRepository, List<ItemDescriptionViewModel> itemDescriptionViewModels)
         {
             this.itemDescriptionRepository = itemDescriptionRepository;
             this.saleRepository = saleRepository;
+            this.ItemDescriptionsVM = itemDescriptionViewModels;
             InitializeComponent();
             InitializeAssortmentButtons();
-
         }
 
         private void InitializeAssortmentButtons()
         {
             if (itemDescriptionRepository != null)
             {
-                foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
-                {
-                    ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
-                }
                 foreach (ItemDescriptionViewModel itemVM in ItemDescriptionsVM)
                 {
                     Button btn = new Button();
@@ -49,14 +45,43 @@ namespace DigitalKasseSystem.Views
                     btn.Tag = itemVM;
                     btn.Margin = new Thickness(5);
                     btn.Padding = new Thickness(10);
+                    btn.Click click = ItemButton_Click;
                     MidWrapPanel.Children.Add(btn);
                 }
             }
         }
 
+        private void ItemButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button clickedButton = sender as Button;
+            if (clickedButton != null)
+            {
+                //Name of button would be ItemButton_ + ItemNumber
+                string[] itemParts = clickedButton.Name.ToString().Split('_');
+                Item item = new Item(itemDescriptionRepository.GetItemDescription(int.Parse(itemParts[1])));
+                MainSaleViewModel mainSaleVM = this.DataContext as MainSaleViewModel;
+                mainSaleVM.CurrentSale.Basket.Add(item);
+
+                Button button = new Button();
+                button.Content = item.ItemDescription.ItemName;
+                CurrentOrdreWindow.Children.Add(button);
+            }
+        }
+
+
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void EndSaleButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NotEndSaleButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DigitalKasseSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace DigitalKasseSystem.ViewModels
     class MainSaleViewModel
     {
         public SaleViewModel CurrentSale;
-        public List<ItemDescriptionViewModel> itemDescriptionsVM;
+        public ObservableCollection<ItemDescriptionViewModel> ItemDescriptionsVM { get; set; }
 
         ItemDescriptionRepository itemDescriptionRepository;
         SaleRepository saleRepository;
@@ -40,10 +41,13 @@ namespace DigitalKasseSystem.ViewModels
 
         public void RemoveItemFromSale(int itemNumber)
         {
-            Item item = CurrentSale.Basket.Find(item => item.ItemDescription.ItemNumber == itemNumber);
-            if (item != null)
+            if (CurrentSale.Basket.Count <= 0)
             {
-                CurrentSale.Basket.Remove(item);
+                Item item = CurrentSale.Basket.Find(item => item.ItemDescription.ItemNumber == itemNumber);
+                if (item != null)
+                {
+                    CurrentSale.Basket.Remove(item);
+                }
             }
         }
 

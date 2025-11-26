@@ -35,6 +35,10 @@ namespace DigitalKasseSystem.ViewModels
         {
             this.itemDescriptionRepository = itemDescriptionRepository;
             ItemDescriptionsVM = new ObservableCollection<ItemDescriptionViewModel>();
+            foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
+            {
+                ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
+            }
             ItemDescription itemDescription = new ItemDescription();
         }
 
@@ -54,7 +58,7 @@ namespace DigitalKasseSystem.ViewModels
 
         public void DeleteItemDescription(ItemDescription itemDescription)
         {
-            if (itemDescription != null)
+            if (itemDescription != null && SelectedItemDescriptionVM != null)
             {
                 ItemDescriptionsVM.Remove(SelectedItemDescriptionVM);
                 itemDescriptionRepository.DeleteItemDescription(itemDescription);
