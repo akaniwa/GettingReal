@@ -45,7 +45,7 @@ namespace DigitalKasseSystem.Views
                     btn.Tag = itemVM;
                     btn.Margin = new Thickness(5);
                     btn.Padding = new Thickness(10);
-                    btn.Click click = ItemButton_Click;
+                    //btn.Click click = ItemButton_Click;
                     MidWrapPanel.Children.Add(btn);
                 }
             }
