@@ -10,6 +10,40 @@
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         WindowState="Maximized">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="652*"/>
+            <RowDefinition Height="71*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <UniformGrid Grid.Row="2">
+            <Button Content="Tilføj" FontSize="20"/>
+            <Button Content="Slet" FontSize="20" />
+        </UniformGrid>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Width="10"/>
+            <Button Name="ReturnButton" Content="←" FontSize="35" Width="50" Click="ReturnButton_Click" />
+        </StackPanel>
+        <ListBox Grid.Row="1" Margin="10" FontSize="20" Name="AssortmentListBox"/>
+        <Canvas Grid.Column="1" Grid.Row="1">
+            <Label Content="Varenummer:" Canvas.Left="79" Canvas.Top="84" FontSize="20"/>
+            <Label Content="Billede Sti:" Canvas.Left="80" Canvas.Top="166" FontSize="20"/>
+            <Label Content="Navn:" Canvas.Left="78" Canvas.Top="324" FontSize="20"/>
+            <Label Content="Pris:" Canvas.Left="81" Canvas.Top="405" FontSize="20"/>
+            <Label Content="Kategori:" Canvas.Left="80" Canvas.Top="484" FontSize="20"/>
+            <TextBox x:Name="ItemNumberBox" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="84" Width="556" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="ItemNameBox" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="324" Width="556" Height="39" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" />
+            <TextBox x:Name="ItemPriceBox" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="404" Width="556" Height="39" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="ItemCategoriBox" Canvas.Left="239" TextWrapping="Wrap" Canvas.Top="484" Width="556" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="PicturePathBox" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="164" Width="279" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+            <Image Height="130" Canvas.Left="635" Canvas.Top="150" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/Views/MissingImageIcon.png"/>
+            <Button Content="..." Canvas.Left="525" Canvas.Top="164" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="40"/>
+
+
+        </Canvas>
 
     </Grid>
 </Window>
