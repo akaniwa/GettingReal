@@ -1,0 +1,59 @@
+﻿<Window x:Class="DigitalKasseSystem.Views.SaleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitalKasseSystem.Views"
+        mc:Ignorable="d"
+        Title="Uldum Hal - Kiosk - Salg" 
+Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
+Width="{x:Static SystemParameters.PrimaryScreenWidth}"
+        WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer x:Name="CurrentOrdreScrollViewer" VerticalScrollBarVisibility="Auto" Grid.Row="0">
+                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" Background="LightGray" VerticalAlignment="Stretch" >
+                    <Label Grid.Row="0" x:Name="OrdreNumberLabel" Content="Ordre #1" FontSize="24" HorizontalAlignment="Center"/>
+                    <StackPanel x:Name="CurrentOrdreWindow" Grid.Row="0" />
+                </StackPanel>
+            </ScrollViewer>
+            <StackPanel Grid.Row="1" Background="LightGray">
+                <Label Grid.Row="1" x:Name="TotalLabel" Content="Total: 0 DKK" FontSize="36" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock Text="" Width="10" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <Button Grid.Row="1" x:Name="EndSaleButton" Content="Afslut" Height="90" FontSize="24"/>
+                <Button Grid.Row="1" x:Name="NotEndSaleButton" Content="Fortryd" Height="60" FontSize="24"/>
+            </StackPanel>
+        </Grid>
+        <WrapPanel Name="MidWrapPanel" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
+            <Button x:Name="Button1" Height="100" Width="100">
+                <Image Name="PølsemixImage" Source="/Images/Uldum Hal Menu billeder/polsemix.png" Height="100" Width="100" />
+            </Button>
+            <Button x:Name="Button2" Height="100" Width="100">
+                <Image Name="FranskHotdogImage" Source="/Images/Uldum Hal Menu billeder/franskHotdog.png" Height="100" Width="100"/>
+            </Button>
+            <Button x:Name="Button3" Height="100" Width="100">
+                <Button.Content>
+                    <Canvas VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <Image Name="PommesImage" Source="/Images/Uldum Hal Menu billeder/pommesFrits.png" Height="100" Width="100" Canvas.Left="-50" Canvas.Top="-49" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                        <TextBlock Text="7) Yakitori Kyllingespyd og Kart. Både." Canvas.Left="-49" Canvas.Top="26" VerticalAlignment="Center" Width="98" TextWrapping="Wrap" Height="24" FontSize="8" FontWeight="Medium" HorizontalAlignment="Center" Panel.ZIndex="-1" Padding="1,0,0,0"/>
+                    </Canvas>
+                </Button.Content>
+            </Button>
+        </WrapPanel>
+        <StackPanel x:Name="QuickOrderWindow" Grid.Column="0" Orientation="Vertical" Background="LightGray" >
+            <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
+</Window>

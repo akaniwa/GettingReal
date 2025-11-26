@@ -5,51 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DigitalKasseSystem"
         mc:Ignorable="d"
-        Title="Uldum Hal Kasse" 
+        Title="Uldum Hal - Kiosk" 
         Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
-        Width="{x:Static SystemParameters.PrimaryScreenWidth}">
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}"
+        WindowState="Maximized">
+        
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1.5*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <ScrollViewer x:Name="CurrentOrdreScrollViewer" VerticalScrollBarVisibility="Auto" Grid.Row="0">
-                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" Background="LightGray" VerticalAlignment="Stretch" >
-                    <Label Grid.Row="0" x:Name="OrdreNumberLabel" Content="Ordre #1" FontSize="24" HorizontalAlignment="Center"/>
-                    <StackPanel x:Name="CurrentOrdreWindow" Grid.Row="0" />
-                </StackPanel>
-            </ScrollViewer>
-            <StackPanel Grid.Row="1" Background="LightGray">
-                <Label Grid.Row="1" x:Name="TotalLabel" Content="Total: 0 DKK" FontSize="36" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <ToggleButton Grid.Row="1" x:Name="PaymentKontant_Button" Content="Kontant" Height="60" Width="130" FontSize="24" HorizontalAlignment="Left"/>
-                    <TextBlock Text="" Width="10" HorizontalAlignment="Center"/>
-                    <ToggleButton Grid.Row="1" x:Name="PaymentMobilPay_Button" Content="MobilPay" Height="60" Width="130" FontSize="24" HorizontalAlignment="Right"/>
-                </StackPanel>
-                <Button Grid.Row="1" x:Name="EndSaleButton" Content="Afslut" Height="90" FontSize="24"/>
-                <Button Grid.Row="1" x:Name="NotEndSaleButton" Content="Fortryd" Height="60" FontSize="24"/>
-            </StackPanel>
-        </Grid>
-        <WrapPanel Name="MidWrapPanel" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
-            <Button x:Name="Button1" Height="100" Width="100">
-                <Image Name="PølsemixImage" Source="/Images/Uldum Hal Menu billeder/polsemix.png" Height="100" Width="100" />
-            </Button>
-            <Button x:Name="Button2" Height="100" Width="100">
-                <Image Name="FranskHotdogImage" Source="/Images/Uldum Hal Menu billeder/franskHotdog.png" Height="100" Width="100"/>
-            </Button>
-            <Button x:Name="Button3" Height="100" Width="100">
-                <Image x:Name="PommesImage" Source="/Images/Uldum Hal Menu billeder/pommesFrits.png" Height="100" Width="100"/>
-            </Button>
-        </WrapPanel>
-        <StackPanel x:Name="QuickOrderWindow" Grid.Column="0" Orientation="Vertical" Background="LightGray" >
-            <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center"/>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Label Content="Hovedmenu" FontSize="48" HorizontalAlignment="Center" Margin="20"/>
+            <UniformGrid Rows="2" Columns="2">
+                <Button x:Name="SaleButton" Content="Salg" FontSize="36" Margin="20" Click="SaleButton_Click"/>
+                <Button x:Name="AssortmentButton" Content="Sortiment" FontSize="36" Margin="20" Click="AssortmentButton_Click"/>
+                <Button x:Name="ReportsButton" Content="Rapporter (Ikke implementeret)" FontSize="36" Margin="20" Click="NotImplementedButton_Click"/>
+                <Button x:Name="SettingsButton" Content="Indstillinger (Ikke implementeret)" FontSize="36" Margin="20" Click="NotImplementedButton_Click"/>
+            </UniformGrid>
         </StackPanel>
     </Grid>
 </Window>

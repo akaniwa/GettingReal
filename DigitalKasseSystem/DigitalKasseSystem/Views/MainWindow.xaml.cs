@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using DigitalKasseSystem.Views;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -21,5 +22,21 @@ namespace DigitalKasseSystem
             InitializeComponent();
         }
 
+        private void SaleButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaleWindow saleWindow = new SaleWindow();
+            saleWindow.Show();
+        }
+
+        private void AssortmentButton_Click(object sender, RoutedEventArgs e)
+        {
+            AssortmentWindow assortmentWindow = new AssortmentWindow();
+            assortmentWindow.Show();
+        }
+
+        private void NotImplementedButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Denne funktion er ikke tilgængelig endnu. Kontakt support.", "Ikke tilgængelig!");
+        }
     }
 }
