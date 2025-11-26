@@ -9,22 +9,22 @@ namespace DigitalKasseSystem.ViewModels
 {
     public class ItemDescriptionViewModel
     {
-        ItemDescription itemDescription;
+        private ItemDescription itemDescription;
 
-        public int ItemNumber;
-        public string ItemName;
-        public double Price;
-        public string PicturePath;
-        public string Category;
+        public int ItemNumber { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public string PicturePath { get; set; }
+        public string Categori { get; set; }
 
         public ItemDescriptionViewModel(ItemDescription itemDescription)
         {
             this.itemDescription = itemDescription;
             ItemNumber = itemDescription.ItemNumber;
-            ItemName = itemDescription.ItemName;
+            Name = itemDescription.ItemName;
             Price = itemDescription.Price;
             PicturePath = itemDescription.PicturePath;
-            Category = itemDescription.Category;
+            Categori = itemDescription.Category;
         }
     }
 }

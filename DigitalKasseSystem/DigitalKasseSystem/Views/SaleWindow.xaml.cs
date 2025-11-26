@@ -31,6 +31,7 @@ namespace DigitalKasseSystem.Views
             this.saleRepository = saleRepository;
             InitializeComponent();
             InitializeAssortmentButtons();
+
         }
 
         private void InitializeAssortmentButtons()
@@ -44,7 +45,7 @@ namespace DigitalKasseSystem.Views
                 foreach (ItemDescriptionViewModel itemVM in ItemDescriptionsVM)
                 {
                     Button btn = new Button();
-                    btn.Content = itemVM.ItemName + "\n" + itemVM.Price.ToString("C2");
+                    btn.Content = itemVM.Name + "\n" + itemVM.Price.ToString("C2");
                     btn.Tag = itemVM;
                     btn.Margin = new Thickness(5);
                     btn.Padding = new Thickness(10);

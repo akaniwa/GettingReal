@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace DigitalKasseSystem.Models
 {
@@ -32,22 +33,24 @@ namespace DigitalKasseSystem.Models
         public void SaveToFile()
         {
             string dateString = DateTime.Now.ToString("yyyyMMdd");
-            StreamWriter writer = new StreamWriter($"Sales{dateString}.txt");
-            foreach (Sale sale in sales)
+            string filePath = $"Sales{dateString}.csv";
+            if (File.Exists(filePath))
             {
-                writer.WriteLine(sale.ToString());
+                using (StreamWriter outputFile = new StreamWriter(filePath, true))
+                {
+                    outputFile.WriteLine("1");
+                }
             }
-            writer.Close();
         }
 
         public void LoadFromFile(DateTime date)
         {
             string dateString = date.ToString("yyyyMMdd");
-            if (!File.Exists($"Sales{dateString}.txt"))
+            if (!File.Exists($"Sales{dateString}.csv"))
             {
                 return;
             }
-            StreamReader reader = new StreamReader($"Sales{dateString}.txt");
+            StreamReader reader = new StreamReader($"Sales{dateString}.csv");
             string line;
             while ((line = reader.ReadLine()) != null)
             {

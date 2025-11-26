@@ -21,6 +21,9 @@ namespace DigitalKasseSystem
         private ItemDescriptionRepository itemDescriptionRepository;
         private SaleRepository saleRepository;
 
+        AssortmentWindow assortmentWindow;
+        SaleWindow saleWindow;
+
         public MainWindow()
         {
             itemDescriptionRepository = new ItemDescriptionRepository();
@@ -28,17 +31,17 @@ namespace DigitalKasseSystem
             // set Window icon from embedded resource
             //this.Icon = new BitmapImage(new Uri("pack://application:,,,/DigitalKasseSystem/DigitalKasseSystem/Image/icon.png"));
             InitializeComponent();
+            assortmentWindow = new AssortmentWindow(itemDescriptionRepository);
+            saleWindow = new SaleWindow(itemDescriptionRepository, saleRepository);
         }
 
         private void SaleButton_Click(object sender, RoutedEventArgs e)
         {
-            SaleWindow saleWindow = new SaleWindow(itemDescriptionRepository, saleRepository);
             saleWindow.Show();
         }
 
         private void AssortmentButton_Click(object sender, RoutedEventArgs e)
         {
-            AssortmentWindow assortmentWindow = new AssortmentWindow(itemDescriptionRepository);
             assortmentWindow.Show();
         }
 
