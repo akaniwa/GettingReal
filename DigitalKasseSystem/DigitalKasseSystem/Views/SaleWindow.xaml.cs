@@ -141,23 +141,31 @@ namespace DigitalKasseSystem.Views
 
         private void EndSaleButton_Click(object sender, RoutedEventArgs e)
         {
-            
-            
-            int saleNumber = int.Parse(DateTime.Now.ToString("ddMMyy") +  + Sale.OrderNumber);
-            double total = mainSaleViewModel.CurrentSale.Total;
-            PaymentMethod paymentMethod = mainSaleViewModel.CurrentSale.Payment;
-            DateTime startTime = mainSaleViewModel.CurrentSale.StartTime;
-            DateTime endTime = DateTime.Now;
-            List<Item> basket = mainSaleViewModel.CurrentSale.Basket;
-            Sale sale = new Sale (saleNumber,total,paymentMethod,startTime,endTime,basket);
-            saleRepository.AddSale(sale);
+            PaymentPopup paymentDialog = new PaymentPopup();
+            paymentDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            paymentDialog.ShowDialog();
+            if (paymentDialog.DialogResult == true) // If they paid full
+            {
+                int saleNumber = int.Parse(DateTime.Now.ToString("ddMMyy") + +Sale.OrderNumber); // Missing internal number
+                double total = mainSaleViewModel.CurrentSale.Total;
+                PaymentMethod paymentMethod = mainSaleViewModel.CurrentSale.Payment;
+                DateTime startTime = mainSaleViewModel.CurrentSale.StartTime;
+                DateTime endTime = DateTime.Now;
+                List<Item> basket = mainSaleViewModel.CurrentSale.Basket;
+                Sale sale = new Sale(saleNumber, total, paymentMethod, startTime, endTime, basket);
+                saleRepository.AddSale(sale);
 
-            QuickOrderInstanisiate();
-            saleRepository.SaveToFile();
+                QuickOrderInstanisiate();
+                saleRepository.SaveToFile();
 
-            mainSaleViewModel.CurrentSale = new SaleViewModel();
-            CurrentOrdreWindow.Children.Clear();
-            UpdateTotalLabel();
+                mainSaleViewModel.CurrentSale = new SaleViewModel();
+                CurrentOrdreWindow.Children.Clear();
+                UpdateTotalLabel();
+            }
+            else if (paymentDialog.DialogResult == false) // If missing amount to pay
+            {
+
+            }
         }
 
         private void NotEndSaleButton_Click(object sender, RoutedEventArgs e)

@@ -15,28 +15,13 @@ using System.Windows.Shapes;
 namespace DigitalKasseSystem.Views
 {
     /// <summary>
-    /// Interaction logic for CashPaymentDialog.xaml
+    /// Interaction logic for MobilPayPaymentDialog.xaml
     /// </summary>
-    public partial class CashPaymentDialog : Window
+    public partial class MobilPayPaymentDialog : Window
     {
-        public CashPaymentDialog()
+        public MobilPayPaymentDialog()
         {
             InitializeComponent();
-        }
-
-        private void NumberButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DoneButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DeleteButton_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
