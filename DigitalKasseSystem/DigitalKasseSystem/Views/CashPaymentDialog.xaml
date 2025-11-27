@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DigitalKasseSystem.Views"
         mc:Ignorable="d"
-        Title="CashPaymentDialog" Height="450" Width="800">
+        Title="CashPaymentDialog" Height="700" Width="450">
     <Grid>
-        
+        <Button Content="5" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <Button Content="6" HorizontalAlignment="Left" Margin="287,322,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <Button Content="9" HorizontalAlignment="Left" Margin="287,432,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <Button Content="8" HorizontalAlignment="Center" Margin="0,432,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <Button Content="7" HorizontalAlignment="Left" Margin="61,432,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <Button Content="4" HorizontalAlignment="Left" Margin="61,322,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <Button Content="2" HorizontalAlignment="Center" Margin="0,212,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <Button Content="3" HorizontalAlignment="Left" Margin="287,212,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <Button Content="1" HorizontalAlignment="Left" Margin="61,212,0,0" VerticalAlignment="Top" Height="100" Width="100" Click="NumberButton_Click" FontSize="40"/>
+        <Button Content="⌫" HorizontalAlignment="Left" Margin="287,542,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="DeleteButton_Click"/>
+        <Button Content="0" HorizontalAlignment="Center" Margin="0,542,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
+        <TextBox x:Name="InputTextBox" HorizontalAlignment="Left" Margin="61,118,0,0" TextWrapping="WrapWithOverflow" Text="" FontSize="60" VerticalAlignment="Top" Width="325" Height="90" HorizontalContentAlignment="Center"/>
+        <Label x:Name="TotalAmountLabel" Content="Total: 325 DKK" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="61,33,0,0" VerticalAlignment="Top" Height="69" Width="325" FontSize="40"/>
+        <TextBlock x:Name="AmountBackBox" IsEnabled="False" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" Text="Tilbage: 0 DKK" VerticalAlignment="Top" Height="218" Width="372" Background="LightGray" FontSize="40"/>
+        <Button Content="✓" HorizontalAlignment="Left" Margin="61,542,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="DoneButton_Click"/>
     </Grid>
 </Window>
