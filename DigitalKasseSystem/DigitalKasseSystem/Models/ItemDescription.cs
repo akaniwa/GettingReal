@@ -40,7 +40,7 @@ namespace DigitalKasseSystem.Models
         // Override ToString for easy save functionality
         public override string ToString()
         {
-            return $"{ItemNumber};{ItemName};{Price};{Category};{PicturePath}";
+            return $"{ItemNumber}_{ItemName}_{Picture}_{Price}_{Category}";
         }
     }
 }

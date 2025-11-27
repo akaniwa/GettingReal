@@ -9,8 +9,10 @@ namespace DigitalKasseSystem.Models
 {
     public class ItemDescriptionRepository
     {
-        List<ItemDescription> itemDescriptions = new();
+        //private fields
+        private List<ItemDescription> itemDescriptions = new List<ItemDescription>();
 
+        //methods
         public void AddItemDescription(ItemDescription itemDescription)
         {
             itemDescriptions.Add(itemDescription);
