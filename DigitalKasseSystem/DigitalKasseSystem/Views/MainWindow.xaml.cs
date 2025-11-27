@@ -34,6 +34,7 @@ namespace DigitalKasseSystem
             // set Window icon from embedded resource
             //this.Icon = new BitmapImage(new Uri("pack://application:,,,/DigitalKasseSystem/DigitalKasseSystem/Image/icon.png"));
             InitializeComponent();
+            itemDescriptionRepository.LoadFromFile();
             foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
             {
                 ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
