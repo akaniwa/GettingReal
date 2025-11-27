@@ -18,7 +18,7 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
 
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2.4*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ScrollViewer x:Name="CurrentOrdreScrollViewer" VerticalScrollBarVisibility="Auto" Grid.Row="0">
@@ -28,7 +28,7 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
                 </StackPanel>
             </ScrollViewer>
             <StackPanel Grid.Row="1" Background="LightGray">
-                <Label Grid.Row="1" x:Name="TotalLabel" Content="{Binding mainSaleViewModel}" FontSize="36" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                <Label Grid.Row="1" Name="TotalLabel" Content="Total: 0 DKK" FontSize="36" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Text="" Width="10" HorizontalAlignment="Center"/>
                 </StackPanel>

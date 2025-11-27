@@ -25,6 +25,11 @@ namespace DigitalKasseSystem.Models
             sales.Add(sale);
         }
 
+        public List<Sale> GetSales()
+        {
+            return sales;
+        }
+
         public int GetSalesCount()
         {
             return sales.Count;
@@ -45,6 +50,7 @@ namespace DigitalKasseSystem.Models
 
         public void LoadFromFile(DateTime date)
         {
+            sales.Clear();
             string dateString = date.ToString("yyyyMMdd");
             if (!File.Exists($"Sales{dateString}.csv"))
             {

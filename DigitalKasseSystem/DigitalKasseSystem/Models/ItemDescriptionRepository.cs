@@ -27,8 +27,8 @@ namespace DigitalKasseSystem.Models
         public ItemDescription GetItemDescription(int itemNumber)
         {
             ItemDescription item = itemDescriptions.Find(item => item.ItemNumber == itemNumber);
-            return item;
-        }
+            return item; 
+        } 
 
         public List<ItemDescription> GetItemDescriptions()
         {
@@ -47,6 +47,7 @@ namespace DigitalKasseSystem.Models
 
         public void LoadFromFile()
         {
+            itemDescriptions.Clear();
             if (File.Exists("ItemDescriptions.csv"))
             {
                 StreamReader reader = new StreamReader("ItemDescriptions.csv");

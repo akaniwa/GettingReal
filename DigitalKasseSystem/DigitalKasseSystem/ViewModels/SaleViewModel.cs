@@ -1,4 +1,5 @@
 ﻿using DigitalKasseSystem.Models;
+using DigitalKasseSystem.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
