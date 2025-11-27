@@ -10,11 +10,11 @@ namespace DigitalKasseSystem.Models
 {
     public class ItemDescription
     {
-        public int ItemNumber { get; }
-        public string ItemName { get; }
-        public double Price { get; }
-        public string Category { get; }
-        public string PicturePath { get; } // Optional - maybe string with path would be better
+        public int ItemNumber;
+        public string ItemName;
+        public double Price;
+        public string Category;
+        public string PicturePath; // Optional - maybe string with path would be better
         private static int ItemNumberCount;
 
         // Constructor overloads for different levels of detail
@@ -40,7 +40,7 @@ namespace DigitalKasseSystem.Models
         // Override ToString for easy save functionality
         public override string ToString()
         {
-            return $"{ItemNumber}_{ItemName}_{Picture}_{Price}_{Category}";
+            return $"{ItemNumber};{ItemName};{PicturePath};{Price};{Category}";
         }
     }
 }
