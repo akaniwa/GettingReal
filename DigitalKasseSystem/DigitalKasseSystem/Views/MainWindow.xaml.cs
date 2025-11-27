@@ -1,5 +1,4 @@
 ﻿using DigitalKasseSystem.Models;
-using DigitalKasseSystem.ViewModels;
 using DigitalKasseSystem.Views;
 using System.Text;
 using System.Windows;
@@ -21,7 +20,6 @@ namespace DigitalKasseSystem
     {
         private ItemDescriptionRepository itemDescriptionRepository;
         private SaleRepository saleRepository;
-        public List<ItemDescriptionViewModel> ItemDescriptionsVM;
 
         AssortmentWindow assortmentWindow;
         SaleWindow saleWindow;
@@ -30,38 +28,21 @@ namespace DigitalKasseSystem
         {
             itemDescriptionRepository = new ItemDescriptionRepository();
             saleRepository = new SaleRepository(itemDescriptionRepository);
-            ItemDescriptionsVM = new List<ItemDescriptionViewModel>();
             // set Window icon from embedded resource
             //this.Icon = new BitmapImage(new Uri("pack://application:,,,/DigitalKasseSystem/DigitalKasseSystem/Image/icon.png"));
             InitializeComponent();
-            foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
-            {
-                ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
-            }
+            assortmentWindow = new AssortmentWindow(itemDescriptionRepository);
+            saleWindow = new SaleWindow(itemDescriptionRepository, saleRepository);
         }
 
         private void SaleButton_Click(object sender, RoutedEventArgs e)
         {
-            ItemDescriptionsVM.Clear();
-            foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
-            {
-                ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
-            }
-            saleWindow = new SaleWindow(itemDescriptionRepository, saleRepository, ItemDescriptionsVM);
-            saleWindow.ShowDialog();
+            saleWindow.Show();
         }
 
         private void AssortmentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DialogResult == true)
-            {
-                ItemDescriptionsVM.Clear();
-                foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
-                {
-                    ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
-                }
-            }assortmentWindow = new AssortmentWindow(itemDescriptionRepository);
-            assortmentWindow.ShowDialog();
+            assortmentWindow.Show();
         }
 
         private void NotImplementedButton_Click(object sender, RoutedEventArgs e)
