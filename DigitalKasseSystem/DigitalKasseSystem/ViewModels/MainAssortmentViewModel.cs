@@ -21,12 +21,9 @@ namespace DigitalKasseSystem.ViewModels
             get => selectedItemDescriptionVM;
             set
             {
-                if (selectedItemDescriptionVM != value)
-                {
                     selectedItemDescriptionVM = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(SelectedItemDescriptionVM));
-                }
             }
         }
 
@@ -40,7 +37,6 @@ namespace DigitalKasseSystem.ViewModels
             {
                 ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
             }
-            ItemDescription itemDescription = new ItemDescription();
         }
 
         public ICommand AddItemDescriptionCommand { get; } = new Commands.AddItemDesciptionCommand();
