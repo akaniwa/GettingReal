@@ -32,6 +32,7 @@ namespace DigitalKasseSystem.ViewModels
         public MainAssortmentViewModel(ItemDescriptionRepository itemDescriptionRepository)
         {
             this.itemDescriptionRepository = itemDescriptionRepository;
+            this.itemDescriptionRepository.LoadFromFile();
             ItemDescriptionsVM = new ObservableCollection<ItemDescriptionViewModel>();
             foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
             {
@@ -51,14 +52,16 @@ namespace DigitalKasseSystem.ViewModels
         {
             itemDescriptionRepository.AddItemDescription(itemDescription);
             ItemDescriptionsVM.Add(new ItemDescriptionViewModel(itemDescription));
+            
         }
 
-        public void DeleteItemDescription(ItemDescription itemDescription)
+        public void DeleteItemDescription()
         {
-            if (itemDescription != null && SelectedItemDescriptionVM != null)
+            if (SelectedItemDescriptionVM != null)
             {
                 ItemDescriptionsVM.Remove(SelectedItemDescriptionVM);
-                itemDescriptionRepository.DeleteItemDescription(itemDescription);
+                ItemDescription foundItem = itemDescriptionRepository.GetItemDescription(SelectedItemDescriptionVM.ItemNumber);
+                itemDescriptionRepository.DeleteItemDescription(foundItem);
             }
         }
 

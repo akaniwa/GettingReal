@@ -28,7 +28,6 @@ namespace DigitalKasseSystem.Views
         public AssortmentWindow(ItemDescriptionRepository itemDescriptionRepository)
         {
             InitializeComponent();
-
             mavm = new MainAssortmentViewModel(itemDescriptionRepository);
             DataContext = mavm;
         }

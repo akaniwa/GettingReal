@@ -46,8 +46,19 @@ namespace DigitalKasseSystem.Views
                 foreach (ItemDescriptionViewModel itemVM in ItemDescriptionsVM)
                 {
                     Button btn = new Button();
+                    StackPanel sp = new StackPanel();
                     btn.Name = "ItemButton_" + itemVM.ItemNumber.ToString();
-                    btn.Content = itemVM.Name + "\n" + itemVM.Price.ToString("C2");
+                    Image itemPic = new Image
+                    {
+                        Source = new BitmapImage(new Uri(itemVM.PicturePath, UriKind.RelativeOrAbsolute)),
+                        Width = 100,
+                        Height = 100
+                    };
+                    Label itemName = new Label();
+                    itemName.Content = ($"{itemVM.ItemNumber}) {itemVM.Name}");
+                    sp.Children.Add(itemPic);
+                    sp.Children.Add(itemName);
+                    btn.Content = sp;
                     btn.Tag = itemVM;
                     btn.Margin = new Thickness(5);
                     btn.Padding = new Thickness(10);
@@ -81,12 +92,34 @@ namespace DigitalKasseSystem.Views
 
         private void EndSaleButton_Click(object sender, RoutedEventArgs e)
         {
+            int saleNumber = int.Parse(DateTime.Now.ToString("ddMMyy") +  + Sale.OrderNumber);
+            double total = mainSaleViewModel.CurrentSale.Total;
+            PaymentMethod paymentMethod = mainSaleViewModel.CurrentSale.Payment;
+            DateTime startTime = mainSaleViewModel.CurrentSale.StartTime;
+            DateTime endTime = DateTime.Now;
+            List<Item> basket = mainSaleViewModel.CurrentSale.Basket;
+            Sale sale = new Sale (saleNumber,total,paymentMethod,startTime,endTime,basket);
+            saleRepository.AddSale(sale);
 
+            Button saleReferenceButton = new Button();
+            saleReferenceButton.FontSize = 16;
+            saleReferenceButton.Content = ($"Ordre #{saleNumber.ToString()}\n");
+            foreach (Item item in basket)
+            {
+                saleReferenceButton.Content += ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price} kr.\n");
+            }
+            saleReferenceButton.Content += ($"\nTotal: {total.ToString("C2")}");
+            QuickOrderWindow.Children.Add(saleReferenceButton);
+            QuickOrderWindow.Children.Add(new Separator());
+
+            mainSaleViewModel.CurrentSale = new SaleViewModel();
+            CurrentOrdreWindow.Children.Clear();
         }
 
         private void NotEndSaleButton_Click(object sender, RoutedEventArgs e)
         {
-
+            mainSaleViewModel.CurrentSale = new SaleViewModel();
+            CurrentOrdreWindow.Children.Clear();
         }
     }
 }

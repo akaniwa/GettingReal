@@ -37,7 +37,7 @@ namespace DigitalKasseSystem.Models
 
         public void SaveToFile()
         {
-            StreamWriter writer = new StreamWriter("ItemDescriptions.txt");
+            StreamWriter writer = new StreamWriter("ItemDescriptions.csv");
             foreach (ItemDescription item in itemDescriptions)
             {
                 writer.WriteLine(item.ToString());

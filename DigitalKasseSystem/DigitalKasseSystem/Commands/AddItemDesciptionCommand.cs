@@ -24,7 +24,6 @@ namespace DigitalKasseSystem.Commands
             {
                 ItemDescription defaultItemDesciption = new ItemDescription();
                 mainAssortmentViewModel.AddNewItemDescription(defaultItemDesciption);
-                mainAssortmentViewModel.SelectedItemDescriptionVM = new ItemDescriptionViewModel(defaultItemDesciption);
             }
         }
     }
