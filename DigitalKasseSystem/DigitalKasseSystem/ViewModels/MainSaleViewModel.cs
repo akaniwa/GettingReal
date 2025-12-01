@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DigitalKasseSystem.ViewModels
 {
-    class MainSaleViewModel
+    public class MainSaleViewModel
     {
         public SaleViewModel CurrentSale;
         public List<ItemDescriptionViewModel> itemDescriptionsVM;
@@ -47,14 +47,15 @@ namespace DigitalKasseSystem.ViewModels
             }
         }
 
-        public void SetOrderNumer(int orderNumber)
+        public void SetOrderNumber(int orderNumber)
         {
             Sale.OrderNumber = orderNumber;
         }
 
         public void EndSale(PaymentMethod paymentMethod)
         {
-            int saleNumber = int.Parse(DateTime.Now.ToString("yyyyMMdd") + saleRepository.GetSalesCount().ToString() + Sale.OrderNumber.ToString("D4"));
+            //int saleNumber = int.Parse(DateTime.Now.ToString("yyyyMMdd") + saleRepository.GetSalesCount().ToString() + Sale.OrderNumber.ToString("D4"));
+            int saleNumber = int.Parse($"{DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}{saleRepository.GetSalesCount()}{Sale.OrderNumber.ToString()}");
             Sale sale = new Sale(saleNumber, CurrentSale.Total, CurrentSale.Payment, CurrentSale.StartTime, DateTime.Now, CurrentSale.Basket);
             saleRepository.AddSale(sale);
         }
