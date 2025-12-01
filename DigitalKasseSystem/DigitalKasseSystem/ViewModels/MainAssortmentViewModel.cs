@@ -34,7 +34,7 @@ namespace DigitalKasseSystem.ViewModels
             this.itemDescriptionRepository = itemDescriptionRepository;
             this.itemDescriptionRepository.LoadFromFile();
             ItemDescriptionsVM = new ObservableCollection<ItemDescriptionViewModel>();
-            foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
+            foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
             {
                 ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
             }

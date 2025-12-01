@@ -32,7 +32,7 @@ namespace DigitalKasseSystem.Models
             return item; 
         } 
 
-        public List<ItemDescription> GetItemDescriptions()
+        public List<ItemDescription> GetAllDescriptions()
         {
             return itemDescriptions;
         }

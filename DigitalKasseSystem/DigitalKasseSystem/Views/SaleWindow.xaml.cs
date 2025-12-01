@@ -61,7 +61,7 @@ namespace DigitalKasseSystem.Views
                     };
                     Label itemName = new Label();
                     itemName.FontSize = 16;
-                    itemName.Content = ($"{itemVM.ItemNumber}) {itemVM.Name}");
+                    itemName.Content = ($"{itemVM.ItemNumber}) {itemVM.ItemName}");
                     sp.Children.Add(itemPic);
                     sp.Children.Add(itemName);
                     btn.Content = sp;
@@ -78,7 +78,7 @@ namespace DigitalKasseSystem.Views
         {
             if (sender is Button clickedButton)
             {
-                //Name of button would be ItemButton_ + ItemNumber
+                //ItemName of button would be ItemButton_ + ItemNumber
                 string[] itemParts = clickedButton.Name.ToString().Split('_');
                 Item item = new Item(itemDescriptionRepository.GetItemDescription(int.Parse(itemParts[1])));
 
@@ -141,7 +141,8 @@ namespace DigitalKasseSystem.Views
 
         private void EndSaleButton_Click(object sender, RoutedEventArgs e)
         {
-            PaymentPopup paymentDialog = new PaymentPopup();
+            PaymentPopup paymentDialog = new PaymentPopup(mainSaleViewModel.CurrentSale.Total);
+            paymentDialog.Owner = this;
             paymentDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             paymentDialog.ShowDialog();
             if (paymentDialog.DialogResult == true) // If they paid full
@@ -164,7 +165,7 @@ namespace DigitalKasseSystem.Views
             }
             else if (paymentDialog.DialogResult == false) // If missing amount to pay
             {
-
+                MessageBox.Show("Beløbet betalt er mindre end total beløbet.", "Mangler betaling!");
             }
         }
 

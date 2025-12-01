@@ -48,7 +48,7 @@ namespace DigitalKasseSystem.ViewModels
             }
         }
 
-        public string Name
+        public string ItemName
         {
             get => name;
             set
@@ -132,7 +132,7 @@ namespace DigitalKasseSystem.ViewModels
         // Call this when you want to persist changes back to your repository.
         public ItemDescription ToModel()
         {
-            return new ItemDescription(ItemNumber, Name, Price, Category, PicturePath);
+            return new ItemDescription(ItemNumber, ItemName, Price, Category, PicturePath);
         }
     }
 }

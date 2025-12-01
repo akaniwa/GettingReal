@@ -35,7 +35,7 @@ namespace DigitalKasseSystem
             //this.Icon = new BitmapImage(new Uri("pack://application:,,,/DigitalKasseSystem/DigitalKasseSystem/Image/icon.png"));
             InitializeComponent();
             itemDescriptionRepository.LoadFromFile();
-            foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
+            foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
             {
                 ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
             }
@@ -44,7 +44,7 @@ namespace DigitalKasseSystem
         private void SaleButton_Click(object sender, RoutedEventArgs e)
         {
             ItemDescriptionsVM.Clear();
-            foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
+            foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
             {
                 ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
             }
@@ -57,7 +57,7 @@ namespace DigitalKasseSystem
             if (DialogResult == true)
             {
                 ItemDescriptionsVM.Clear();
-                foreach (ItemDescription item in (itemDescriptionRepository.GetItemDescriptions()))
+                foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
                 {
                     ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
                 }

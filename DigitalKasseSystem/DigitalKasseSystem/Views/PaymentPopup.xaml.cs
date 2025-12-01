@@ -19,9 +19,55 @@ namespace DigitalKasseSystem.Views
     /// </summary>
     public partial class PaymentPopup : Window
     {
-        public PaymentPopup()
+        double amount { get; set; }
+
+        public PaymentPopup(double amount)
         {
+            this.amount = amount;
             InitializeComponent();
+            TotalFromCurrentSale.Content = $"Total: {amount.ToString("C2")}";
+        }
+
+        private void CashButton_Click(object sender, RoutedEventArgs e)
+        {
+            CashPaymentDialog cashPaymentDialog = new CashPaymentDialog(amount);
+            cashPaymentDialog.Owner = this;
+            cashPaymentDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            cashPaymentDialog.ShowDialog();
+            if (cashPaymentDialog.DialogResult == true)
+            {
+                DialogResult = true;
+                Close();
+            }
+            else if (cashPaymentDialog.DialogResult == false)
+            {
+                amount -= cashPaymentDialog.PaidAmount;
+                TotalFromCurrentSale.Content = $"Total: {amount.ToString("C2")}";
+            }
+        }
+
+        private void MobilPayButton_Click(object sender, RoutedEventArgs e)
+        {
+            MobilPayPaymentDialog mobilPayPaymentDialog = new MobilPayPaymentDialog();
+            mobilPayPaymentDialog.Owner = this;
+            mobilPayPaymentDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            mobilPayPaymentDialog.ShowDialog();
+            if (mobilPayPaymentDialog.DialogResult == true)
+            {
+                DialogResult = true;
+                Close();
+            }
+            else if (mobilPayPaymentDialog.DialogResult == false)
+            {
+                DialogResult = false;
+                Close();
+            }
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
         }
     }
 }
