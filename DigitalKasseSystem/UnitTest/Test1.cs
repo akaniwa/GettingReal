@@ -59,7 +59,7 @@ namespace UnitTest
 
 
             //Assert
-            Assert.AreEqual(kebabmixDescription, itemDescriptionRepository.GetItemDescription(3));
+            Assert.AreEqual(kebabmixDescription, itemDescriptionRepository.GetItemDescription(kebabmixDescription.ItemNumber));
         }
 
         [TestMethod]
@@ -72,7 +72,7 @@ namespace UnitTest
 
 
             //Assert
-            Assert.AreEqual(null, itemDescriptionRepository.GetItemDescription(1));
+            Assert.AreEqual(null, itemDescriptionRepository.GetItemDescription(fritterDescription.ItemNumber));
         }
 
         [TestMethod]
@@ -82,7 +82,7 @@ namespace UnitTest
 
 
             //Act
-            mainSaleViewModel.NewItemToSale(2);
+            mainSaleViewModel.NewItemToSale(polselsvobDescription.ItemNumber);
 
             //Assert
             Assert.AreEqual(new Item(polselsvobDescription).ItemDescription, mainSaleViewModel.CurrentSale.Basket[2].ItemDescription);
@@ -95,8 +95,8 @@ namespace UnitTest
 
 
             //Act
-            mainSaleViewModel.RemoveItemFromSale(1);
-            mainSaleViewModel.RemoveItemFromSale(2);
+            mainSaleViewModel.RemoveItemFromSale(fritterDescription.ItemNumber);
+            mainSaleViewModel.RemoveItemFromSale(polselsvobDescription.ItemNumber);
 
             //Assert
             Assert.AreEqual(0, mainSaleViewModel.CurrentSale.Basket.Count);
