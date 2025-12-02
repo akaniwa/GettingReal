@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace DigitalKasseSystem.ViewModels
 {
-    class MainSaleViewModel : INotifyPropertyChanged
-    public class MainSaleViewModel
+    public class MainSaleViewModel : INotifyPropertyChanged
     {
         public SaleViewModel CurrentSale;
         public ObservableCollection<ItemDescriptionViewModel> ItemDescriptionsVM { get; set; }
@@ -43,7 +42,7 @@ namespace DigitalKasseSystem.ViewModels
 
         public void RemoveItemFromSale(int itemNumber)
         {
-            if (CurrentSale.Basket.Count <= 0)
+            if (CurrentSale.Basket.Count > 0)
             {
                 Item item = CurrentSale.Basket.Find(item => item.ItemDescription.ItemNumber == itemNumber);
                 if (item != null)
