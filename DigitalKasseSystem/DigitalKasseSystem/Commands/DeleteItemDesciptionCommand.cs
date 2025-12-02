@@ -14,22 +14,22 @@ namespace DigitalKasseSystem.Commands
 
         public bool CanExecute(object? parameter)
         {
-            if (parameter is MainAssortmentViewModel mainAssortment)
-            {
-                if (mainAssortment.SelectedItemDescriptionVM != null)
-                {
-                    return true;
-                }
-            }
-            return false;
+            bool active = true;
+            //if (parameter is MainAssortmentViewModel mainAssortment)
+            //{
+            //    if (mainAssortment.SelectedItemDescriptionVM == null)
+            //    {
+            //        active = false;
+            //    }
+            //}
+            return active;
         }
 
         public void Execute(object? parameter)
         {
             if (parameter is MainAssortmentViewModel mainAssortment)
             {
-                mainAssortment.ItemDescriptionsVM.Remove(mainAssortment.SelectedItemDescriptionVM);
-                //mainAssortment.DeleteItemDescription(mainAssortment.SelectedItemDescriptionVM.ItemDescription);
+                mainAssortment.DeleteItemDescription();
             }
         }
     }

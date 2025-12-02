@@ -25,7 +25,7 @@
         </UniformGrid>
         <StackPanel Orientation="Horizontal">
             <TextBlock Width="10"/>
-            <Button Name="ReturnButton" Content="←" FontSize="35" Width="50" Click="ReturnButton_Click" />
+            <Button Name="ReturnButton" Content="🏠" FontSize="35" Width="50" Click="ReturnButton_Click" />
         </StackPanel>
         <ListBox Grid.Row="1" ItemsSource="{Binding Path=ItemDescriptionsVM}" Margin="10" FontSize="20" Name="AssortmentListBox" SelectedItem="{Binding SelectedItemDescriptionVM, Mode=TwoWay}">
             <ListBox.ItemTemplate>
@@ -52,13 +52,13 @@
             <Label Content="Navn:" Canvas.Left="78" Canvas.Top="324" FontSize="20"/>
             <Label Content="Pris:" Canvas.Left="81" Canvas.Top="405" FontSize="20"/>
             <Label Content="Kategori:" Canvas.Left="80" Canvas.Top="484" FontSize="20"/>
-            <TextBox x:Name="ItemNumberBox" Text="{Binding SelectedItemDescriptionVM.ItemNumber}" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="84" Width="556" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="ItemNameBox" Text="{Binding SelectedItemDescriptionVM.Name}" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="324" Width="556" Height="39" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" />
-            <TextBox x:Name="ItemPriceBox" Text="{Binding SelectedItemDescriptionVM.Price}" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="404" Width="556" Height="39" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="ItemCategoriBox" Text="{Binding SelectedItemDescriptionVM.Categori}" Canvas.Left="239" TextWrapping="Wrap" Canvas.Top="484" Width="556" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            <TextBox x:Name="PicturePathBox" Text="{Binding SelectedItemDescriptionVM.PicturePath}" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="164" Width="279" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
-            <Image Height="130" Canvas.Left="635" Canvas.Top="150" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Source="{Binding SelectedItemDescriptionVM.PicturePath}"/>
-            <Button Content="..." Canvas.Left="525" Canvas.Top="164" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="40"/>
+            <TextBox x:Name="ItemNumberBox" Text="{Binding SelectedItemDescriptionVM.ItemNumber, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="84" Width="556" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="ItemNameBox" Text="{Binding SelectedItemDescriptionVM.Name, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="324" Width="556" Height="39" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center" />
+            <TextBox x:Name="ItemPriceBox" Text="{Binding SelectedItemDescriptionVM.Price, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="404" Width="556" Height="39" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="ItemCategoriBox" Text="{Binding SelectedItemDescriptionVM.Categori, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="239" TextWrapping="Wrap" Canvas.Top="484" Width="556" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="PicturePathBox" Text="{Binding SelectedItemDescriptionVM.PicturePath, UpdateSourceTrigger=PropertyChanged}" Canvas.Left="240" TextWrapping="Wrap" Canvas.Top="164" Width="279" Height="39" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top" VerticalContentAlignment="Center" IsEnabled="False"/>
+            <Image Height="130" Canvas.Left="635" Canvas.Top="150" Width="130" HorizontalAlignment="Left" VerticalAlignment="Top" Source="{Binding Path=SelectedItemDescriptionVM.Picture}"/>
+            <Button Content="..." Canvas.Left="525" Canvas.Top="164" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="40" Click="ChoosePicButton_Click"/>
         </Canvas>
 
     </Grid>

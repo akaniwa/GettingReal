@@ -1,0 +1,31 @@
+﻿<Window x:Class="DigitalKasseSystem.Views.PaymentPopup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitalKasseSystem.Views"
+        mc:Ignorable="d"
+        Title="PaymentPopup" Height="300" Width="400">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="44*"/>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <UniformGrid Grid.Row="2" Grid.RowSpan="2" >
+            <Button Content="Kontant" Height="50" FontSize="20" Click="CashButton_Click" VerticalAlignment="Center"/>
+            <Button Content="MobilPay" Height="50" FontSize="20" Click="MobilPayButton_Click" VerticalAlignment="Center"/>
+        </UniformGrid>
+        <UniformGrid VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0">
+            <Label Content="Vælg en betalingsmethode:" FontSize="28" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </UniformGrid>
+        <UniformGrid Grid.Row="1">
+            <Label Name="TotalFromCurrentSale" Content="Total: 0.00 kr" FontSize="22" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </UniformGrid>
+        <UniformGrid Grid.Row="3">
+            <Button Content="Annuller" Height="50" FontSize="20" Click="CancelButton_Click" VerticalAlignment="Center"/>
+        </UniformGrid>
+    </Grid>
+</Window>

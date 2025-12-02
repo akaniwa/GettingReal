@@ -8,12 +8,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Views\MissingImageIcon.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="Views\MissingImageIcon.png" />
-  </ItemGroup>
-
 </Project>

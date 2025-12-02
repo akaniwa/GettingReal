@@ -21,11 +21,9 @@ namespace DigitalKasseSystem.ViewModels
             get => selectedItemDescriptionVM;
             set
             {
-                if (selectedItemDescriptionVM != value)
-                {
                     selectedItemDescriptionVM = value;
                     OnPropertyChanged();
-                }
+                    OnPropertyChanged(nameof(SelectedItemDescriptionVM));
             }
         }
 
@@ -34,8 +32,12 @@ namespace DigitalKasseSystem.ViewModels
         public MainAssortmentViewModel(ItemDescriptionRepository itemDescriptionRepository)
         {
             this.itemDescriptionRepository = itemDescriptionRepository;
+            this.itemDescriptionRepository.LoadFromFile();
             ItemDescriptionsVM = new ObservableCollection<ItemDescriptionViewModel>();
-            ItemDescription itemDescription = new ItemDescription();
+            foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
+            {
+                ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
+            }
         }
 
         public ICommand AddItemDescriptionCommand { get; } = new Commands.AddItemDesciptionCommand();
@@ -50,14 +52,16 @@ namespace DigitalKasseSystem.ViewModels
         {
             itemDescriptionRepository.AddItemDescription(itemDescription);
             ItemDescriptionsVM.Add(new ItemDescriptionViewModel(itemDescription));
+            
         }
 
-        public void DeleteItemDescription(ItemDescription itemDescription)
+        public void DeleteItemDescription()
         {
-            if (itemDescription != null)
+            if (SelectedItemDescriptionVM != null)
             {
                 ItemDescriptionsVM.Remove(SelectedItemDescriptionVM);
-                itemDescriptionRepository.DeleteItemDescription(itemDescription);
+                ItemDescription foundItem = itemDescriptionRepository.GetItemDescription(SelectedItemDescriptionVM.ItemNumber);
+                itemDescriptionRepository.DeleteItemDescription(foundItem);
             }
         }
 

@@ -9,8 +9,10 @@ namespace DigitalKasseSystem.Models
 {
     public class ItemDescriptionRepository
     {
-        List<ItemDescription> itemDescriptions = new();
+        //private fields
+        private List<ItemDescription> itemDescriptions = new List<ItemDescription>();
 
+        //methods
         public void AddItemDescription(ItemDescription itemDescription)
         {
             itemDescriptions.Add(itemDescription);
@@ -27,17 +29,17 @@ namespace DigitalKasseSystem.Models
         public ItemDescription GetItemDescription(int itemNumber)
         {
             ItemDescription item = itemDescriptions.Find(item => item.ItemNumber == itemNumber);
-            return item;
-        }
+            return item; 
+        } 
 
-        public List<ItemDescription> GetItemDescriptions()
+        public List<ItemDescription> GetAllDescriptions()
         {
             return itemDescriptions;
         }
 
         public void SaveToFile()
         {
-            StreamWriter writer = new StreamWriter("ItemDescriptions.txt");
+            StreamWriter writer = new StreamWriter("ItemDescriptions.csv");
             foreach (ItemDescription item in itemDescriptions)
             {
                 writer.WriteLine(item.ToString());
@@ -47,6 +49,7 @@ namespace DigitalKasseSystem.Models
 
         public void LoadFromFile()
         {
+            itemDescriptions.Clear();
             if (File.Exists("ItemDescriptions.csv"))
             {
                 StreamReader reader = new StreamReader("ItemDescriptions.csv");
