@@ -47,6 +47,9 @@ namespace UnitTest
             //add two Item's to CurrentSale
             mainSaleViewModel.NewItemToSale(1);
             mainSaleViewModel.NewItemToSale(2);
+
+            //finally emulate the user currently having highlighted a specific ItemDescription in AssortmentWindow
+            mainAssortmentViewModel.SelectedItemDescriptionVM = mainAssortmentViewModel.ItemDescriptionsVM[0];
         }
 
         [TestMethod]
@@ -54,12 +57,13 @@ namespace UnitTest
         {
             //Arrange
 
-            //Act
-            itemDescriptionRepository.AddItemDescription(kebabmixDescription);
 
+            //Act
+            mainAssortmentViewModel.AddNewItemDescription(kebabmixDescription);
 
             //Assert
             Assert.AreEqual(kebabmixDescription, itemDescriptionRepository.GetItemDescription(kebabmixDescription.ItemNumber));
+            Assert.AreEqual(kebabmixDescription.ItemNumber, mainAssortmentViewModel.ItemDescriptionsVM[2].ItemNumber);
         }
 
         [TestMethod]
@@ -67,12 +71,13 @@ namespace UnitTest
         {
             //Arrange
 
-            //Act
-            itemDescriptionRepository.DeleteItemDescription(fritterDescription);
 
+            //Act
+            mainAssortmentViewModel.DeleteItemDescription();
 
             //Assert
             Assert.AreEqual(null, itemDescriptionRepository.GetItemDescription(fritterDescription.ItemNumber));
+            Assert.AreEqual(false, mainAssortmentViewModel.ItemDescriptionsVM.Contains(mainAssortmentViewModel.SelectedItemDescriptionVM));
         }
 
         [TestMethod]
