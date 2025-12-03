@@ -29,7 +29,7 @@ namespace DigitalKasseSystem.Models
             OrderNumber++;
         }
 
-        public override string ToString() // Change later for saving functionality
+        public override string ToString()
         {
             string saveString = $"{saleNumber},{total},{paymentMethod},{startTime},{endTime},";
             foreach (Item item in basket)
