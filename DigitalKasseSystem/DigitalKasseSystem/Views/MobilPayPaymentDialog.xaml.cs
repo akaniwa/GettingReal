@@ -19,9 +19,19 @@ namespace DigitalKasseSystem.Views
     /// </summary>
     public partial class MobilPayPaymentDialog : Window
     {
-        public MobilPayPaymentDialog()
+        double amountOwed;
+        public MobilPayPaymentDialog(double amount)
         {
+            amountOwed = amount;
             InitializeComponent();
+            mobilpayImage.Source = new BitmapImage(new Uri("pack://application:,,,/Resources/mobilpay_qr.png"));
+            TotalLabel.Content = $"Total: {amountOwed.ToString("C2")}";
+        }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
         }
     }
 }

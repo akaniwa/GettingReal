@@ -48,7 +48,7 @@ namespace DigitalKasseSystem.Views
 
         private void MobilPayButton_Click(object sender, RoutedEventArgs e)
         {
-            MobilPayPaymentDialog mobilPayPaymentDialog = new MobilPayPaymentDialog();
+            MobilPayPaymentDialog mobilPayPaymentDialog = new MobilPayPaymentDialog(amount);
             mobilPayPaymentDialog.Owner = this;
             mobilPayPaymentDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             mobilPayPaymentDialog.ShowDialog();

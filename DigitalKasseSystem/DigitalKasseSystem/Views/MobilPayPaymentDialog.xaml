@@ -14,14 +14,14 @@
             <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <Image Height="250" Width="250"/>
-            <Label Content="Total: 0.00 kr." FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image x:Name="mobilpayImage" Height="250" Width="250"/>
+            <Label x:Name="TotalLabel" Content="Total: 0.00 kr." FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
         <UniformGrid VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="MobilPay" FontSize="40" FontWeight="Bold"/>
         </UniformGrid>
         <UniformGrid Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Content="OK" Height="100" Width="150" FontSize="20"/>
+            <Button Content="OK" Height="100" Width="150" FontSize="20" Click="OkButton_Click"/>
         </UniformGrid>
 
     </Grid>
