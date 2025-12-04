@@ -23,6 +23,8 @@ namespace UnitTest
         [TestInitialize]
         public void Init()
         {
+            //Arrange
+
             //repositories
             itemDescriptionRepository = new ItemDescriptionRepository();
             saleRepository = new SaleRepository(itemDescriptionRepository);
@@ -55,9 +57,6 @@ namespace UnitTest
         [TestMethod]
         public void AddNewItemDescriptionTest()
         {
-            //Arrange
-
-
             //Act
             mainAssortmentViewModel.AddNewItemDescription(kebabmixDescription);
 
@@ -69,9 +68,6 @@ namespace UnitTest
         [TestMethod]
         public void DeleteItemDescriptionTest()
         {
-            //Arrange
-
-
             //Act
             mainAssortmentViewModel.DeleteItemDescription();
 
@@ -83,9 +79,6 @@ namespace UnitTest
         [TestMethod]
         public void NewItemToSaleTest()
         {
-            //Arrange
-
-
             //Act
             mainSaleViewModel.NewItemToSale(polselsvobDescription.ItemNumber);
 
@@ -96,9 +89,6 @@ namespace UnitTest
         [TestMethod]
         public void RemoveItemFromSaleTest()
         {
-            //Arrange
-
-
             //Act
             mainSaleViewModel.RemoveItemFromSale(fritterDescription.ItemNumber);
             mainSaleViewModel.RemoveItemFromSale(polselsvobDescription.ItemNumber);
@@ -110,9 +100,6 @@ namespace UnitTest
         [TestMethod]
         public void SetOrderNumberTest()
         {
-            //Arrange
-
-
             //Act
             mainSaleViewModel.SetOrderNumber(5);
             mainSaleViewModel.EndSale(PaymentMethod.Kontant);
@@ -124,9 +111,6 @@ namespace UnitTest
         [TestMethod]
         public void EndSaleTest()
         {
-            //Arrange
-
-
             //Act
             mainSaleViewModel.EndSale(PaymentMethod.Kontant);
 
