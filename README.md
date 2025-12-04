@@ -1,1 +1,2 @@
-### **_Toes kinda weird in a sneeze?_**
+### Getting real projekt: Uldum Hal Digital Kassesystem
+Bemærk, op til flere ting er ikke implementeret endnu.
