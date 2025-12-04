@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace DigitalKasseSystem.Views
 {
-    /// <summary>
-    /// Interaction logic for MobilPayPaymentDialog.xaml
-    /// </summary>
     public partial class MobilPayPaymentDialog : Window
     {
         double amountOwed;
