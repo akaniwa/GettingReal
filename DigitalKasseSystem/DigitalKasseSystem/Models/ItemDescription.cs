@@ -31,9 +31,9 @@ namespace DigitalKasseSystem.Models
         public ItemDescription()
         {
             ItemNumber = ItemNumberCount;
-            ItemName = "Input name";
+            ItemName = "Indtast navn på vare";
             Price = 0;
-            Category = "No category";
+            Category = "Ingen kategori";
             ItemNumberCount++;
         }
 

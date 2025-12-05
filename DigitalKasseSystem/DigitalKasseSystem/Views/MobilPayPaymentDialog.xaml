@@ -14,7 +14,7 @@
             <RowDefinition Height="15*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <Image x:Name="mobilpayImage" Height="250" Width="250"/>
+            <Image x:Name="mobilpayImage" Height="250" Width="250" Source="/Image/mobilpayUldumHal.jpg"/>
             <Label x:Name="TotalLabel" Content="Total: 0.00 kr." FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
         <UniformGrid VerticalAlignment="Center" HorizontalAlignment="Center">
