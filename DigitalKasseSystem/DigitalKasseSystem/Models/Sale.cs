@@ -10,7 +10,7 @@ namespace DigitalKasseSystem.Models
     {
         public static int OrderNumber;
 
-        private int saleNumber;
+        private long saleNumber;
         private double total;
         private PaymentMethod paymentMethod;
         private DateTime startTime;
@@ -18,7 +18,7 @@ namespace DigitalKasseSystem.Models
         private List<Item> basket;
 
         // Constructor for Sale class, starting a new sale
-        public Sale(int saleNumber, double total, PaymentMethod payment, DateTime startTime, DateTime endTime, List<Item> basket)
+        public Sale(long saleNumber, double total, PaymentMethod payment, DateTime startTime, DateTime endTime, List<Item> basket)
         {
             this.saleNumber = saleNumber;
             this.total = total;

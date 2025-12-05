@@ -1,6 +1,7 @@
 ﻿using DigitalKasseSystem.Models;
 using DigitalKasseSystem.ViewModels;
 using DigitalKasseSystem.Views;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,12 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IOPath = System.IO.Path;
 
 namespace DigitalKasseSystem
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private ItemDescriptionRepository itemDescriptionRepository;
@@ -28,11 +27,11 @@ namespace DigitalKasseSystem
 
         public MainWindow()
         {
+            string iconPath = IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "icon.png");
             itemDescriptionRepository = new ItemDescriptionRepository();
             saleRepository = new SaleRepository(itemDescriptionRepository);
             ItemDescriptionsVM = new List<ItemDescriptionViewModel>();
-            // set Window icon from embedded resource
-            //this.Icon = new BitmapImage(new Uri("pack://application:,,,/DigitalKasseSystem/DigitalKasseSystem/Image/icon.png"));
+            this.Icon = new BitmapImage(new Uri(iconPath));
             InitializeComponent();
             itemDescriptionRepository.LoadFromFile();
             foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))

@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using IOPath = System.IO.Path;
 
 namespace DigitalKasseSystem.Views
 {
-    /// <summary>
-    /// Interaction logic for MobilPayPaymentDialog.xaml
-    /// </summary>
     public partial class MobilPayPaymentDialog : Window
     {
-        public MobilPayPaymentDialog()
+        double amountOwed;
+        public MobilPayPaymentDialog(double amount)
         {
+            amountOwed = amount;
             InitializeComponent();
+            string picPath = IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "mobilpayUldumHal.jpg");
+            mobilpayImage.Source = new BitmapImage(new Uri(picPath));
+            TotalLabel.Content = $"Total: {amountOwed.ToString("C2")}";
+        }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
+            Close();
         }
     }
 }

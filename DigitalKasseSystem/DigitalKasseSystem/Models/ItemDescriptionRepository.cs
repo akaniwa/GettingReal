@@ -60,8 +60,8 @@ namespace DigitalKasseSystem.Models
                     int itemNumber = int.Parse(parts[0]);
                     string itemName = parts[1];
                     double price = double.Parse(parts[2]);
-                    string category = parts[3];
-                    string picturePath = parts[4];
+                    string picturePath = parts[3];
+                    string category = parts[4];
                     ItemDescription itemDescription = new ItemDescription(itemNumber, itemName, price, category, picturePath);
                     itemDescriptions.Add(itemDescription);
                 }

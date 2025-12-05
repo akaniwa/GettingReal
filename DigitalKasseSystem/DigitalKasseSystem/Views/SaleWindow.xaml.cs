@@ -80,7 +80,7 @@ namespace DigitalKasseSystem.Views
             {
                 //ItemName of button would be ItemButton_ + ItemNumber
                 string[] itemParts = clickedButton.Name.ToString().Split('_');
-                Item item = new Item(itemDescriptionRepository.GetItemDescription(int.Parse(itemParts[1])));
+                Item item = new Item(itemDescriptionRepository.GetItemDescription(int.Parse(itemParts[1]))); // Change to ItemDesciptionVM
 
                 Button button = new Button();
                 button.FontSize = 20;

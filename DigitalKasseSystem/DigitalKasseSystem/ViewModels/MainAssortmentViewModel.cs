@@ -15,13 +15,13 @@ namespace DigitalKasseSystem.ViewModels
     {
         ItemDescriptionRepository itemDescriptionRepository;
         public ObservableCollection<ItemDescriptionViewModel> ItemDescriptionsVM { get; set; }
-        private ItemDescriptionViewModel? selectedItemDescriptionVM;
+        private ItemDescriptionViewModel? _selectedItemDescriptionVM;
         public ItemDescriptionViewModel? SelectedItemDescriptionVM
         {
-            get => selectedItemDescriptionVM;
+            get => _selectedItemDescriptionVM;
             set
             {
-                    selectedItemDescriptionVM = value;
+                    _selectedItemDescriptionVM = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(SelectedItemDescriptionVM));
             }

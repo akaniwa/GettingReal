@@ -11,7 +11,7 @@ namespace DigitalKasseSystem.ViewModels
         private readonly ItemDescription itemDescription;
 
         private int itemNumber;
-        private string name = string.Empty;
+        private string itemName = string.Empty;
         private double price;
         private string picturePath = string.Empty;
         private string category = string.Empty;
@@ -25,7 +25,7 @@ namespace DigitalKasseSystem.ViewModels
 
             // copy model -> vm backing fields
             itemNumber = itemDescription.ItemNumber;
-            name = itemDescription.ItemName ?? string.Empty;
+            itemName = itemDescription.ItemName ?? string.Empty;
             price = itemDescription.Price;
             category = itemDescription.Category ?? string.Empty;
             picturePath = itemDescription.PicturePath ?? string.Empty;
@@ -50,11 +50,11 @@ namespace DigitalKasseSystem.ViewModels
 
         public string ItemName
         {
-            get => name;
+            get => itemName;
             set
             {
-                if (name == value) return;
-                name = value;
+                if (itemName == value) return;
+                itemName = value;
                 itemDescription.ItemName = value;
                 OnPropertyChanged();
             }
@@ -65,7 +65,7 @@ namespace DigitalKasseSystem.ViewModels
             get => price;
             set
             {
-                if (price.Equals(value)) return;
+                if (price == value) return;
                 price = value;
                 itemDescription.Price = value;
                 OnPropertyChanged();
