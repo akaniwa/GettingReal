@@ -64,7 +64,8 @@ namespace DigitalKasseSystem.Views
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            paidAmountString.Remove(paidAmountString.Length - 1);
+            paidAmountString = paidAmountString.Remove(paidAmountString.Length - 1);
+            InputTextBox.Text = paidAmountString;
         }
     }
 }

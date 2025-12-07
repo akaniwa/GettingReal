@@ -8,7 +8,8 @@ namespace DigitalKasseSystem.Models
 {
     public class Sale
     {
-        public static int OrderNumber;
+        // Attributes
+        public static int OrderNumber = 1;
 
         private long saleNumber;
         private double total;
@@ -29,6 +30,7 @@ namespace DigitalKasseSystem.Models
             OrderNumber++;
         }
 
+        // ToString override for easy save funtionallity
         public override string ToString()
         {
             string saveString = $"{saleNumber},{total},{paymentMethod},{startTime},{endTime},";

@@ -10,11 +10,12 @@ namespace DigitalKasseSystem.Models
 {
     public class ItemDescription
     {
+        // Attributes
         public int ItemNumber;
         public string ItemName;
         public double Price;
         public string Category;
-        public string PicturePath; // Optional - maybe string with path would be better
+        public string PicturePath;
         private static int ItemNumberCount;
 
         // Constructor overloads for different levels of detail
