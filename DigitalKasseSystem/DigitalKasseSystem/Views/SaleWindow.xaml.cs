@@ -185,6 +185,8 @@ namespace DigitalKasseSystem.Views
         private void ChangeCurrentOrdreNumberButton_Click(object sender, RoutedEventArgs e)
         {
             ChangeOrdreDialog changeOrdreDialog = new ChangeOrdreDialog();
+            changeOrdreDialog.Owner = this;
+            changeOrdreDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             changeOrdreDialog.ShowDialog();
             if (changeOrdreDialog.DialogResult == true)
             {
