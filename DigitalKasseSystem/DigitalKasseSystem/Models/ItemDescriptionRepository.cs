@@ -9,15 +9,17 @@ namespace DigitalKasseSystem.Models
 {
     public class ItemDescriptionRepository
     {
-        //private fields
+        // Private fields
         private List<ItemDescription> itemDescriptions = new List<ItemDescription>();
 
-        //methods
+        // Methods
+        // Adds ItemDesciption to list
         public void AddItemDescription(ItemDescription itemDescription)
         {
             itemDescriptions.Add(itemDescription);
         }
 
+        // Removes ItemDesciption from list
         public void DeleteItemDescription(ItemDescription itemDescription)
         {
             if (itemDescription != null)
@@ -25,18 +27,21 @@ namespace DigitalKasseSystem.Models
                 itemDescriptions.Remove(itemDescription);
             }
         }
-
+        
+        // Return single ItemDesciption using the item number to find the specific
         public ItemDescription GetItemDescription(int itemNumber)
         {
             ItemDescription item = itemDescriptions.Find(item => item.ItemNumber == itemNumber);
             return item; 
         } 
 
+        // Returns list of ItemDesciptions
         public List<ItemDescription> GetAllDescriptions()
         {
             return itemDescriptions;
         }
 
+        // Saves all ItemDesciptions to ItemDesciptions.csv for later use
         public void SaveToFile()
         {
             StreamWriter writer = new StreamWriter("ItemDescriptions.csv");
@@ -47,6 +52,7 @@ namespace DigitalKasseSystem.Models
             writer.Close();
         }
 
+        // Loads all files from ItemDesciptions.csv
         public void LoadFromFile()
         {
             itemDescriptions.Clear();

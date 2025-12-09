@@ -12,7 +12,6 @@ namespace DigitalKasseSystem.ViewModels
     public class MainSaleViewModel : INotifyPropertyChanged
     {
         public SaleViewModel CurrentSale;
-        public ObservableCollection<ItemDescriptionViewModel> ItemDescriptionsVM { get; set; }
 
         ItemDescriptionRepository itemDescriptionRepository;
         SaleRepository saleRepository;
@@ -58,7 +57,7 @@ namespace DigitalKasseSystem.ViewModels
 
         public void EndSale(PaymentMethod paymentMethod)
         {
-            long saleNumber = long.Parse(DateTime.Now.ToString("yyMMdd") + saleRepository.GetSalesCount().ToString("D2") + Sale.OrderNumber.ToString("D2"));
+            long saleNumber = long.Parse(DateTime.Now.ToString("yyMMdd") + saleRepository.GetSalesCount().ToString("D3") + Sale.OrderNumber.ToString("D2"));
             Sale sale = new Sale(saleNumber, CurrentSale.Total, CurrentSale.Payment, CurrentSale.StartTime, DateTime.Now, CurrentSale.Basket);
             saleRepository.AddSale(sale);
         }

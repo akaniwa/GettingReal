@@ -85,7 +85,7 @@ namespace DigitalKasseSystem.Views
                 Button button = new Button();
                 button.FontSize = 20;
                 button.Tag = item;
-                button.Content = ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price.ToString("C2")}") ;
+                button.Content = ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price.ToString("C2")}");
                 button.Height = 80;
                 button.Click += InCartItem_Click;
                 mainSaleViewModel.CurrentSale.Basket.Add(item);
@@ -113,23 +113,18 @@ namespace DigitalKasseSystem.Views
         public void UpdateTotalLabel()
         {
             TotalLabel.Content = ($"Total: {mainSaleViewModel.CurrentSale.Total.ToString("C2")}");
+            CurrentOrdreLabel.Content = ($"Ordre #{Sale.OrderNumber.ToString("D2")}");
         }
 
+        // Makes new button for the completed ordre
         private void QuickOrderInstanisiate()
         {
-            string saleNumber;
+            string saleNumber = Sale.OrderNumber.ToString("D2");
             List<Item> basket = mainSaleViewModel.CurrentSale.Basket;
-            if (Sale.OrderNumber < 10)
-            {
-                saleNumber = "0" + Sale.OrderNumber;
-            }
-            else
-            {
-                saleNumber = $"{Sale.OrderNumber}";
-            }
             Button saleReferenceButton = new Button();
             saleReferenceButton.FontSize = 16;
             saleReferenceButton.Content = ($"Ordre #{saleNumber.ToString()}\n");
+            saleReferenceButton.Click += SaleReferenceButton_Click;
             foreach (Item item in basket)
             {
                 saleReferenceButton.Content += ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price} kr.\n");
@@ -137,6 +132,16 @@ namespace DigitalKasseSystem.Views
             saleReferenceButton.Content += ($"\nTotal: {mainSaleViewModel.CurrentSale.Total.ToString("C2")}");
             QuickOrderWindow.Children.Add(saleReferenceButton);
             QuickOrderWindow.Children.Add(new Separator());
+        }
+
+        private void SaleReferenceButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button)
+            {
+                int separator = QuickOrderWindow.Children.IndexOf(button);
+                QuickOrderWindow.Children.RemoveAt(separator + 1);
+                QuickOrderWindow.Children.Remove(button);
+            }
         }
 
         private void EndSaleButton_Click(object sender, RoutedEventArgs e)
@@ -153,10 +158,10 @@ namespace DigitalKasseSystem.Views
                 DateTime startTime = mainSaleViewModel.CurrentSale.StartTime;
                 DateTime endTime = DateTime.Now;
                 List<Item> basket = mainSaleViewModel.CurrentSale.Basket;
+                QuickOrderInstanisiate();
                 Sale sale = new Sale(saleNumber, total, paymentMethod, startTime, endTime, basket);
                 saleRepository.AddSale(sale);
 
-                QuickOrderInstanisiate();
                 saleRepository.SaveToFile();
 
                 mainSaleViewModel.CurrentSale = new SaleViewModel();
@@ -169,11 +174,29 @@ namespace DigitalKasseSystem.Views
             }
         }
 
+        // Method for cancel button
         private void NotEndSaleButton_Click(object sender, RoutedEventArgs e)
         {
             mainSaleViewModel.CurrentSale = new SaleViewModel();
             CurrentOrdreWindow.Children.Clear();
             UpdateTotalLabel();
+        }
+
+        private void ChangeCurrentOrdreNumberButton_Click(object sender, RoutedEventArgs e)
+        {
+            ChangeOrdreDialog changeOrdreDialog = new ChangeOrdreDialog();
+            changeOrdreDialog.Owner = this;
+            changeOrdreDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            changeOrdreDialog.ShowDialog();
+            if (changeOrdreDialog.DialogResult == true)
+            {
+                Sale.OrderNumber = changeOrdreDialog.newCurrentOrdreNumber;
+                UpdateTotalLabel();
+            }
+            else
+            {
+                MessageBox.Show("Indtastet nummer er højere end 99, tjek korrekte nummer er indtastet", "Indtastet er højere end forventet");
+            }
         }
     }
 }

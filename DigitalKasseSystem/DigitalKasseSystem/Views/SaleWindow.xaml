@@ -18,26 +18,33 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
 
         <Grid Grid.Column="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="2.4*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition/>
+                <RowDefinition Height="8*"/>
+                <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
-            <ScrollViewer x:Name="CurrentOrdreScrollViewer" VerticalScrollBarVisibility="Auto" Grid.Row="0">
-                <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Vertical" Background="LightGray" VerticalAlignment="Stretch" >
-                    <Label Grid.Row="0" x:Name="OrdreNumberLabel" Content="Ordre #1" FontSize="24" HorizontalAlignment="Center"/>
-                    <StackPanel x:Name="CurrentOrdreWindow" Grid.Row="0" />
+            <StackPanel Background="LightGray" Grid.Row="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Label Name="CurrentOrdreLabel" Grid.Row="0" Content="Ordre #1" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Name="ChangeCurrentOrdreNumberButton" Content="✎" Click="ChangeCurrentOrdreNumberButton_Click" FontSize="20" Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </StackPanel>
+                <Separator/>
+            </StackPanel>
+            <ScrollViewer x:Name="CurrentOrdreScrollViewer" VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Vertical" Background="LightGray" VerticalAlignment="Stretch" >
+                    <StackPanel x:Name="CurrentOrdreWindow" Grid.Row="1" />
                 </StackPanel>
             </ScrollViewer>
-            <StackPanel Grid.Row="1" Background="LightGray">
-                <Label Grid.Row="1" Name="TotalLabel" Content="Total: 0 DKK" FontSize="36" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
-                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Grid.Row="2" Background="LightGray">
+                <Label Grid.Row="2" Name="TotalLabel" Content="Total: 0 DKK" FontSize="36" VerticalAlignment="Bottom" HorizontalAlignment="Center"/>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Text="" Width="10" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <Button Grid.Row="1" x:Name="EndSaleButton" Content="Afslut" Height="90" FontSize="24" Click="EndSaleButton_Click"/>
-                <Button Grid.Row="1" x:Name="NotEndSaleButton" Content="Fortryd" Height="60" FontSize="24" Click="NotEndSaleButton_Click"/>
+                <Button Grid.Row="2" x:Name="EndSaleButton" Content="Afregn" Height="90" FontSize="24" Click="EndSaleButton_Click"/>
+                <Button Grid.Row="2" x:Name="NotEndSaleButton" Content="Annuller" Height="60" FontSize="24" Click="NotEndSaleButton_Click"/>
             </StackPanel>
         </Grid>
         <WrapPanel Name="MidWrapPanel" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
-            
+
         </WrapPanel>
         <Grid>
             <Grid.RowDefinitions>
@@ -46,7 +53,7 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Background="LightGray" Grid.Row="0">
                 <Button Name="ReturnButton" Content="🏠" FontSize="35" Width="50" Click="ReturnButton_Click" HorizontalAlignment="Left" />
-                <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center"/>
+                <Label Content="Ordre oversigt" FontSize="46" HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel x:Name="QuickOrderWindow" Grid.Column="0" Orientation="Vertical" Background="LightGray" Grid.Row="1">
             </StackPanel>

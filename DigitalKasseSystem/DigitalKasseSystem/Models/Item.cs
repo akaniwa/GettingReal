@@ -8,10 +8,10 @@ namespace DigitalKasseSystem.Models
 {
     public class Item
     {
-        //backing field
+        // Backing field
         private ItemDescription _itemDescription;
 
-        //properties
+        // Properties
         public ItemDescription ItemDescription 
         { 
             get { return _itemDescription; }

@@ -12,8 +12,11 @@ namespace DigitalKasseSystem.Commands
     {
         public event EventHandler? CanExecuteChanged;
 
+        // Method choosing wether or not this command can be executed
         public bool CanExecute(object? parameter)
         {
+            //Returns true always right not - could not make it work in time
+
             bool active = true;
             //if (parameter is MainAssortmentViewModel mainAssortment)
             //{
@@ -25,8 +28,10 @@ namespace DigitalKasseSystem.Commands
             return active;
         }
 
+        // This is what happeds when command is executed - parameter being the datacontext here
         public void Execute(object? parameter)
         {
+            // Runs method DeleteItemDesciption, that deletes the selected ItemDesciption
             if (parameter is MainAssortmentViewModel mainAssortment)
             {
                 mainAssortment.DeleteItemDescription();
