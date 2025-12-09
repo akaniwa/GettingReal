@@ -59,8 +59,8 @@ namespace DigitalKasseSystem.ViewModels
         {
             if (SelectedItemDescriptionVM != null)
             {
-                ItemDescriptionsVM.Remove(SelectedItemDescriptionVM);
                 ItemDescription foundItem = itemDescriptionRepository.GetItemDescription(SelectedItemDescriptionVM.ItemNumber);
+                ItemDescriptionsVM.Remove(SelectedItemDescriptionVM);
                 itemDescriptionRepository.DeleteItemDescription(foundItem);
             }
         }
