@@ -19,7 +19,7 @@
         <Button Content="⌫" Tag="delete" HorizontalAlignment="Left" Margin="300,584,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="DeleteButton_Click"/>
         <Button Content="0" Tag="0" HorizontalAlignment="Left" Margin="180,584,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="NumberButton_Click"/>
         <TextBox x:Name="InputTextBox" HorizontalAlignment="Left" Margin="60,104,0,0" TextWrapping="WrapWithOverflow" Text="" FontSize="60" VerticalAlignment="Top" Width="339" Height="100" HorizontalContentAlignment="Center"/>
-        <Label Content="Indtast ordre nummer:" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="61,24,0,0" VerticalAlignment="Top" Height="78" Width="339" FontSize="40"/>
+        <Label Content="Indtast ordre nr" HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="61,24,0,0" VerticalAlignment="Top" Height="78" Width="339" FontSize="40"/>
         <Button Content="✓" HorizontalAlignment="Left" Margin="60,584,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="40" Click="DoneButton_Click"/>
     </Grid>
 </Window>

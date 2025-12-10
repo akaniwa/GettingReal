@@ -20,7 +20,7 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition Height="8*"/>
-                <RowDefinition Height="3*"/>
+                <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
             <StackPanel Background="LightGray" Grid.Row="0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -53,7 +53,7 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Background="LightGray" Grid.Row="0">
                 <Button Name="ReturnButton" Content="🏠" FontSize="35" Width="50" Click="ReturnButton_Click" HorizontalAlignment="Left" />
-                <Label Content="Ordre oversigt" FontSize="46" HorizontalAlignment="Center"/>
+                <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel x:Name="QuickOrderWindow" Grid.Column="0" Orientation="Vertical" Background="LightGray" Grid.Row="1">
             </StackPanel>
