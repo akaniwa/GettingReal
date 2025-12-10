@@ -81,15 +81,31 @@ namespace DigitalKasseSystem.Views
                 //ItemName of button would be ItemButton_ + ItemNumber
                 string[] itemParts = clickedButton.Name.ToString().Split('_');
                 Item item = new Item(itemDescriptionRepository.GetItemDescription(int.Parse(itemParts[1]))); // Change to ItemDesciptionVM
-
-                Button button = new Button();
-                button.FontSize = 20;
-                button.Tag = item;
-                button.Content = ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price.ToString("C2")}");
-                button.Height = 80;
-                button.Click += InCartItem_Click;
                 mainSaleViewModel.CurrentSale.Basket.Add(item);
-                CurrentOrdreWindow.Children.Add(button);
+
+                // If type of item is already in basket
+                if (mainSaleViewModel.CurrentSale.Basket.Count(basketItem => basketItem.ItemDescription.ItemNumber == item.ItemDescription.ItemNumber) > 1)
+                {
+                    CurrentOrdreWindow.Children.OfType<Button>().ToList().ForEach(button =>
+                    {
+                        if (button.Tag is Item buttonItem && buttonItem.ItemDescription.ItemNumber == item.ItemDescription.ItemNumber)
+                        {
+                            int itemCount = mainSaleViewModel.CurrentSale.Basket.Count(basketItem => basketItem.ItemDescription.ItemNumber == item.ItemDescription.ItemNumber);
+                            button.Content = ($"{item.ItemDescription.ItemName} x{itemCount} - { (item.ItemDescription.Price * itemCount).ToString("C2")}");
+                        }
+                    });
+                }
+                else
+                {
+                    // If type of item is not in basket
+                    Button button = new Button();
+                    button.FontSize = 20;
+                    button.Tag = item;
+                    button.Content = ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price.ToString("C2")}");
+                    button.Height = 80;
+                    button.Click += InCartItem_Click;
+                    CurrentOrdreWindow.Children.Add(button);
+                }
             }
             UpdateTotalLabel();
         }
@@ -99,8 +115,26 @@ namespace DigitalKasseSystem.Views
             if (sender is Button clickedButton)
             {
                 Item item = (Item)clickedButton.Tag;
-                mainSaleViewModel.CurrentSale.Basket.Remove(item);
-                CurrentOrdreWindow.Children.Remove(clickedButton);
+                foreach (Item basketItem in mainSaleViewModel.CurrentSale.Basket.ToList())
+                {
+                    if (basketItem.ItemDescription.ItemNumber == item.ItemDescription.ItemNumber)
+                    {
+                        mainSaleViewModel.CurrentSale.Basket.Remove(basketItem);
+                        break;
+                    }
+                }
+                if (mainSaleViewModel.CurrentSale.Basket.Count(basketItem => basketItem.ItemDescription.ItemNumber == item.ItemDescription.ItemNumber) >= 1)
+                {
+                    int itemCount = mainSaleViewModel.CurrentSale.Basket.Count(basketItem => basketItem.ItemDescription.ItemNumber == item.ItemDescription.ItemNumber);
+                    if (itemCount == 1)
+                        clickedButton.Content = ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price.ToString("C2")}");
+                    else
+                        clickedButton.Content = ($"{item.ItemDescription.ItemName} x{itemCount} - { (item.ItemDescription.Price * itemCount).ToString("C2")}");
+                }
+                else
+                {
+                    CurrentOrdreWindow.Children.Remove(clickedButton);
+                }
             }
             UpdateTotalLabel();
         }

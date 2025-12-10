@@ -16,7 +16,7 @@ namespace DigitalKasseSystem.Models
         public double Price;
         public string Category;
         public string PicturePath;
-        private static int ItemNumberCount;
+        public static int ItemNumberCount;
 
         // Constructor overloads for different levels of detail
         public ItemDescription(int itemNumber, string itemName, double price, string category, string picture)
@@ -31,11 +31,11 @@ namespace DigitalKasseSystem.Models
 
         public ItemDescription()
         {
+            ItemNumberCount++;
             ItemNumber = ItemNumberCount;
             ItemName = "Indtast navn på vare";
             Price = 0;
             Category = "Ingen kategori";
-            ItemNumberCount++;
         }
 
         // Override ToString for easy save functionality

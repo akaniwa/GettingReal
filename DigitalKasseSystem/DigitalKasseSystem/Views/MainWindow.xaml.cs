@@ -53,14 +53,12 @@ namespace DigitalKasseSystem
 
         private void AssortmentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DialogResult == true)
-            {
-                ItemDescriptionsVM.Clear();
-                foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
-                {
-                    ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
-                }
-            }assortmentWindow = new AssortmentWindow(itemDescriptionRepository);
+            //ItemDescriptionsVM.Clear();
+            //foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
+            //{
+            //    ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
+            //}
+            assortmentWindow = new AssortmentWindow(itemDescriptionRepository);
             assortmentWindow.ShowDialog();
         }
 
