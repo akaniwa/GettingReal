@@ -1,7 +1,9 @@
 ﻿using DigitalKasseSystem.Models;
+using DigitalKasseSystem.Views;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace DigitalKasseSystem.ViewModels

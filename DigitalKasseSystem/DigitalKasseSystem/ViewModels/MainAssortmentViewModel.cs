@@ -44,27 +44,25 @@ namespace DigitalKasseSystem.ViewModels
         public ICommand AddItemDescriptionCommand { get; } = new Commands.AddItemDesciptionCommand();
         public ICommand DeleteItemDescriptionCommand { get; } = new Commands.DeleteItemDesciptionCommand();
 
-        public void SaveAssortment()
+        public int SaveAssortment()
         {
+            List<int> usedItemNumbers = new List<int>();
+            foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
+            {
+                if (usedItemNumbers.Contains(item.ItemNumber))
+                {
+                    return item.ItemNumber;
+                }
+                usedItemNumbers.Add(item.ItemNumber);
+            }
             itemDescriptionRepository.SaveToFile();
+            return 0;
         }
 
         public void AddNewItemDescription(ItemDescription itemDescription)
         {
             itemDescriptionRepository.AddItemDescription(itemDescription);
             ItemDescriptionsVM.Add(new ItemDescriptionViewModel(itemDescription));
-        }
-
-        public bool ValidateItemNumber(int itemNumber)
-        {
-            foreach (ItemDescriptionViewModel itemVM in ItemDescriptionsVM)
-            {
-                if (itemVM.ItemNumber == itemNumber)
-                {
-                    return false;
-                }
-            }
-            return true;
         }
 
         public void DeleteItemDescription()

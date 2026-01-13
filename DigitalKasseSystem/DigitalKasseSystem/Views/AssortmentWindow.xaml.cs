@@ -34,9 +34,16 @@ namespace DigitalKasseSystem.Views
 
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
-            mavm.SaveAssortment();
-            DialogResult = true;
-            this.Close();
+            int itemNumberDoubled = mavm.SaveAssortment();
+            if (itemNumberDoubled == 0)
+            {
+                DialogResult = true;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show($"Varenummer {itemNumberDoubled} er brugt mere end én gang. Ret venligst dette før du vender tilbage.", "Fejl i varenummere", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void ChoosePicButton_Click(object sender, RoutedEventArgs e)
