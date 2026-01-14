@@ -22,5 +22,11 @@ namespace DigitalKasseSystem.Views
             DialogResult = true;
             Close();
         }
+
+        private void AnnullerButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+            Close();
+        }
     }
 }

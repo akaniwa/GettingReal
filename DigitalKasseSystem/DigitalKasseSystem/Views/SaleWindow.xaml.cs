@@ -56,12 +56,15 @@ namespace DigitalKasseSystem.Views
                     Image itemPic = new Image
                     {
                         Source = new BitmapImage(new Uri(itemVM.PicturePath, UriKind.RelativeOrAbsolute)),
-                        Width = 100,
+                        Width = 120,
                         Height = 100
                     };
-                    Label itemName = new Label();
-                    itemName.FontSize = 16;
-                    itemName.Content = ($"{itemVM.ItemNumber}) {itemVM.ItemName}");
+                    TextBlock itemName = new TextBlock();
+                    itemName.Width = 120;
+                    itemName.Height = 50;
+                    itemName.TextWrapping = TextWrapping.Wrap;
+                    itemName.FontSize = 18;
+                    itemName.Text = ($"{itemVM.ItemNumber}) {itemVM.ItemName}");
                     sp.Children.Add(itemPic);
                     sp.Children.Add(itemName);
                     btn.Content = sp;
@@ -154,16 +157,34 @@ namespace DigitalKasseSystem.Views
         private void QuickOrderInstanisiate()
         {
             string saleNumber = Sale.OrderNumber.ToString("D2");
-            List<Item> basket = mainSaleViewModel.CurrentSale.Basket;
             Button saleReferenceButton = new Button();
-            saleReferenceButton.FontSize = 16;
-            saleReferenceButton.Content = ($"Ordre #{saleNumber.ToString()}\n");
             saleReferenceButton.Click += SaleReferenceButton_Click;
+            saleReferenceButton.HorizontalContentAlignment = HorizontalAlignment.Left;
+            saleReferenceButton.Margin = new Thickness(5);
+            StackPanel sp = new StackPanel();
+
+            TextBlock Titel = new TextBlock();
+            Titel.TextAlignment = TextAlignment.Left;
+            Titel.Margin = new Thickness(0, 0, 0, 10);
+            Titel.FontSize = 20;
+            Titel.Text = ($"Ordre #{saleNumber.ToString()}");
+
+            TextBlock mainText = new TextBlock();
+            mainText.TextAlignment = TextAlignment.Left;
+            mainText.Margin = new Thickness(0, 0, 0, 10);
+            mainText.FontSize = 16;
+            List<Item> basket = mainSaleViewModel.CurrentSale.Basket;
             foreach (Item item in basket)
             {
-                saleReferenceButton.Content += ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price} kr.\n");
+                mainText.Text += ($"{item.ItemDescription.ItemName} - {item.ItemDescription.Price} kr.\n");
             }
-            saleReferenceButton.Content += ($"\nTotal: {mainSaleViewModel.CurrentSale.Total.ToString("C2")}");
+            mainText.Text += ($"\nTotal: {mainSaleViewModel.CurrentSale.Total.ToString("C2")}");
+
+            sp.Margin = new Thickness(10);
+            sp.Children.Add(Titel);
+            sp.Children.Add(mainText);
+            saleReferenceButton.Content = sp;
+
             QuickOrderWindow.Children.Add(saleReferenceButton);
             QuickOrderWindow.Children.Add(new Separator());
         }

@@ -38,6 +38,20 @@ namespace DigitalKasseSystem
             {
                 ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
             }
+
+            SaleButton.Content = new Image
+            {
+                Source = new BitmapImage(new Uri(IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "salgButtonImage.png"))),
+                Width = 350,
+                Height = 350
+            };
+
+            AssortmentButton.Content = new Image
+            {
+                Source = new BitmapImage(new Uri(IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "sortimentButtonImage.png"))),
+                Width = 350,
+                Height = 350
+            };
         }
 
         private void SaleButton_Click(object sender, RoutedEventArgs e)

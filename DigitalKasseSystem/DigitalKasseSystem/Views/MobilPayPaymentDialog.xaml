@@ -20,9 +20,10 @@
         <UniformGrid VerticalAlignment="Center" HorizontalAlignment="Center">
             <Label Content="MobilPay" FontSize="40" FontWeight="Bold"/>
         </UniformGrid>
-        <UniformGrid Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Button Content="OK" Height="100" Width="150" FontSize="20" Click="OkButton_Click"/>
-        </UniformGrid>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="OK" Height="100" Width="250" FontSize="20" Click="OkButton_Click"/>
+            <Button Content="Annuller" Height="50" Width="250" FontSize="20" Click="AnnullerButton_Click"/>
+        </StackPanel>
 
     </Grid>
 </Window>

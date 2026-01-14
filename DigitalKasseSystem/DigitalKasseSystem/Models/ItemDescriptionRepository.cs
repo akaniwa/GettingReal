@@ -44,6 +44,7 @@ namespace DigitalKasseSystem.Models
         // Saves all ItemDesciptions to ItemDesciptions.csv for later use
         public void SaveToFile()
         {
+            itemDescriptions.Sort((x, y) => x.ItemNumber.CompareTo(y.ItemNumber));
             StreamWriter writer = new StreamWriter("ItemDescriptions.csv");
             foreach (ItemDescription item in itemDescriptions)
             {

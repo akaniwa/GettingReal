@@ -43,9 +43,7 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
                 <Button Grid.Row="2" x:Name="NotEndSaleButton" Content="Annuller" Height="60" FontSize="24" Click="NotEndSaleButton_Click"/>
             </StackPanel>
         </Grid>
-        <WrapPanel Name="MidWrapPanel" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White">
-
-        </WrapPanel>
+        <WrapPanel Name="MidWrapPanel" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
