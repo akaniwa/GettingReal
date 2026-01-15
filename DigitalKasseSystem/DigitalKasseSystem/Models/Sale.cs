@@ -10,31 +10,30 @@ namespace DigitalKasseSystem.Models
     {
         // Attributes
         public static int OrderNumber = 1;
-
-        private long saleNumber;
-        private double total;
-        private PaymentMethod paymentMethod;
-        private DateTime startTime;
-        private DateTime endTime;
-        private List<Item> basket;
+        public List<Item> Basket;
+        public long SaleNumber;
+        public double Total;
+        public PaymentMethod PaymentMethod;
+        public DateTime StartTime;
+        public DateTime EndTime;
 
         // Constructor for Sale class, starting a new sale
         public Sale(long saleNumber, double total, PaymentMethod payment, DateTime startTime, DateTime endTime, List<Item> basket)
         {
-            this.saleNumber = saleNumber;
-            this.total = total;
-            this.paymentMethod = payment;
-            this.startTime = startTime;
-            this.endTime = endTime;
-            this.basket = basket;
+            this.SaleNumber = saleNumber;
+            this.Total = total;
+            this.PaymentMethod = payment;
+            this.StartTime = startTime;
+            this.EndTime = endTime;
+            this.Basket = basket;
             OrderNumber++;
         }
 
         // ToString override for easy save funtionallity
         public override string ToString()
         {
-            string saveString = $"{saleNumber},{total},{paymentMethod},{startTime},{endTime},";
-            foreach (Item item in basket)
+            string saveString = $"{SaleNumber},{Total},{PaymentMethod},{StartTime},{EndTime},";
+            foreach (Item item in Basket)
             {
                 saveString += item.ToString() + "-";
             }

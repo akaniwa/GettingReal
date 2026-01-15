@@ -10,7 +10,8 @@ namespace DigitalKasseSystem.Models
     public enum PaymentMethod
     {
         Kontant,
-        MobilePay
+        MobilePay,
+        Blandet
     }
 
     // Possible future enums can be added here

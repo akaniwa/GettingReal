@@ -17,7 +17,7 @@ namespace DigitalKasseSystem.Models
         public SaleRepository(ItemDescriptionRepository itemDescriptionRepository)
         {
             this.itemDescriptionRepository = itemDescriptionRepository;
-            LoadFromFile(DateTime.Now);
+            //LoadFromFile(DateTime.Now);
         }
 
         public void AddSale(Sale sale)
@@ -43,8 +43,40 @@ namespace DigitalKasseSystem.Models
             {
                 using (StreamWriter outputFile = new StreamWriter(filePath, true))
                 {
-                    outputFile.WriteLine("1");
+                    foreach (Sale sale in sales)
+                    {
+                        StringBuilder itemsBuilder = new StringBuilder();
+                        for (int i = 0; i < sale.Basket.Count; i++)
+                        {
+                            itemsBuilder.Append(sale.Basket[i].ItemDescription.ItemNumber);
+                            if (i < sale.Basket.Count - 1)
+                            {
+                                itemsBuilder.Append(",");
+                            }
+                        }
+                        outputFile.WriteLine($"{sale.SaleNumber};{sale.Total};{sale.PaymentMethod};{sale.StartTime};{sale.EndTime};{itemsBuilder}");
+                    }
+                    outputFile.Close();
                 }
+            }
+            else
+            {
+                StreamWriter writer = new StreamWriter(filePath);
+                writer.WriteLine("Ordre nummer;Total;Betalingsmethode;Starttidspunkt;Sluttidspunkt;Vare (varenummere)");
+                foreach (Sale sale in sales)
+                {
+                    StringBuilder itemsBuilder = new StringBuilder();
+                    for (int i = 0; i < sale.Basket.Count; i++)
+                    {
+                        itemsBuilder.Append(sale.Basket[i].ItemDescription.ItemNumber);
+                        if (i < sale.Basket.Count - 1)
+                        {
+                            itemsBuilder.Append(",");
+                        }
+                    }
+                    writer.WriteLine($"{sale.SaleNumber};{sale.Total};{sale.PaymentMethod};{sale.StartTime};{sale.EndTime};{itemsBuilder}");
+                }
+                writer.Close();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DigitalKasseSystem.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +21,14 @@ namespace DigitalKasseSystem.Views
     public partial class PaymentPopup : Window
     {
         double amount { get; set; }
+        MainSaleViewModel mainSaleView;
 
-        public PaymentPopup(double amount)
+        public PaymentPopup(double amount, MainSaleViewModel mainSaleVM)
         {
             this.amount = amount;
             InitializeComponent();
+            mainSaleView = mainSaleVM;
+            DataContext = mainSaleView;
             TotalFromCurrentSale.Content = $"Total: {amount.ToString("C2")}";
         }
 
@@ -37,6 +41,7 @@ namespace DigitalKasseSystem.Views
             if (cashPaymentDialog.DialogResult == true)
             {
                 DialogResult = true;
+                mainSaleView.CurrentSale.Payment = Models.PaymentMethod.Kontant;
                 Close();
             }
             else if (cashPaymentDialog.DialogResult == false)
@@ -55,6 +60,7 @@ namespace DigitalKasseSystem.Views
             if (mobilPayPaymentDialog.DialogResult == true)
             {
                 DialogResult = true;
+                mainSaleView.CurrentSale.Payment = Models.PaymentMethod.MobilePay;
                 Close();
             }
             else if (mobilPayPaymentDialog.DialogResult == false)

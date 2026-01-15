@@ -34,7 +34,7 @@ namespace DigitalKasseSystem.Views
             mainSaleViewModel = new MainSaleViewModel(itemDescriptionRepository, saleRepository);
             InitializeComponent();
             InitializeAssortmentButtons();
-            saleRepository.LoadFromFile(DateTime.Now);
+            //saleRepository.LoadFromFile(DateTime.Now);
             foreach (Sale sale in saleRepository.GetSales())
             {
                 QuickOrderInstanisiate();
@@ -86,7 +86,7 @@ namespace DigitalKasseSystem.Views
                 Item item = new Item(itemDescriptionRepository.GetItemDescription(int.Parse(itemParts[1]))); // Change to ItemDesciptionVM
                 mainSaleViewModel.CurrentSale.Basket.Add(item);
 
-                // If type of item is already in basket
+                // If type of item is already in Basket
                 if (mainSaleViewModel.CurrentSale.Basket.Count(basketItem => basketItem.ItemDescription.ItemNumber == item.ItemDescription.ItemNumber) > 1)
                 {
                     CurrentOrdreWindow.Children.OfType<Button>().ToList().ForEach(button =>
@@ -100,7 +100,7 @@ namespace DigitalKasseSystem.Views
                 }
                 else
                 {
-                    // If type of item is not in basket
+                    // If type of item is not in Basket
                     Button button = new Button();
                     button.FontSize = 20;
                     button.Tag = item;
@@ -201,7 +201,7 @@ namespace DigitalKasseSystem.Views
 
         private void EndSaleButton_Click(object sender, RoutedEventArgs e)
         {
-            PaymentPopup paymentDialog = new PaymentPopup(mainSaleViewModel.CurrentSale.Total);
+            PaymentPopup paymentDialog = new PaymentPopup(mainSaleViewModel.CurrentSale.Total, mainSaleViewModel);
             paymentDialog.Owner = this;
             paymentDialog.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             paymentDialog.ShowDialog();
@@ -225,7 +225,7 @@ namespace DigitalKasseSystem.Views
             }
             else if (paymentDialog.DialogResult == false) // If missing amount to pay
             {
-                MessageBox.Show("Beløbet betalt er mindre end total beløbet.", "Mangler betaling!");
+                MessageBox.Show("Beløbet betalt er mindre end Total beløbet.", "Mangler betaling!");
             }
         }
 
