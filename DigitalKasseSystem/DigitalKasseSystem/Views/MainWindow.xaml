@@ -27,8 +27,8 @@
         </UniformGrid>
 
         <UniformGrid Rows="2" Columns="2" Grid.Row="1" Grid.Column="1">
-            <Button x:Name="AssortmentButton" Width="auto" Height="auto" Content="Sortiment" FontSize="36" Click="AssortmentButton_Click" Margin="10"/>
             <Button x:Name="SaleButton" Width="auto" Height="auto" Content="Salg" FontSize="36" Click="SaleButton_Click" Margin="10"/>
+            <Button x:Name="AssortmentButton" Width="auto" Height="auto" Content="Sortiment" FontSize="36" Click="AssortmentButton_Click" Margin="10"/>
             <Button x:Name="ReportsButton" Width="auto" Height="auto" Content="Rapporter (Ikke implementeret)" FontSize="36" Click="NotImplementedButton_Click" Margin="10"/>
             <Button x:Name="SettingsButton" Width="auto" Height="auto" Content="Indstillinger (Ikke implementeret)" FontSize="36" Click="NotImplementedButton_Click" Margin="10"/>
         </UniformGrid>
