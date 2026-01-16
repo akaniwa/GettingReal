@@ -13,6 +13,12 @@ namespace DigitalKasseSystem.ViewModels
 {
     public class SaleViewModel : INotifyPropertyChanged
     {
+        public PaymentMethod Payment;
+        public long SaleNumber;
+        public List<Item> Basket = new List<Item>();
+        public DateTime StartTime;
+        public DateTime EndTime;
+        public bool delivered;
         public double Total
         {
             get { return Basket.Sum(item => item.ItemDescription.Price); }
@@ -22,9 +28,7 @@ namespace DigitalKasseSystem.ViewModels
                 OnPropertyChanged(nameof(Total)); 
             }
         }
-        public PaymentMethod Payment;
-        public List<Item> Basket = new List<Item>();
-        public DateTime StartTime;
+        
 
         public event PropertyChangedEventHandler? PropertyChanged;
 

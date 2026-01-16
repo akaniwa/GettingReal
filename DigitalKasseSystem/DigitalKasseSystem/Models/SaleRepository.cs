@@ -11,6 +11,8 @@ namespace DigitalKasseSystem.Models
 {
     public class SaleRepository
     {
+        private int salesCountOnLoad = 0;
+
         private List<Sale> sales = new List<Sale>();
         ItemDescriptionRepository itemDescriptionRepository;
 
@@ -30,9 +32,16 @@ namespace DigitalKasseSystem.Models
             return sales;
         }
 
-        public int GetSalesCount()
+        public Sale GetSale(long saleNumber)
         {
-            return sales.Count;
+            foreach (Sale sale in sales)
+            {
+                if (sale.SaleNumber == saleNumber)
+                {
+                    return sale;
+                }
+            }
+            return null;
         }
 
         public void SaveToFile()
@@ -43,7 +52,8 @@ namespace DigitalKasseSystem.Models
             {
                 using (StreamWriter outputFile = new StreamWriter(filePath, true))
                 {
-                    foreach (Sale sale in sales)
+                    List<Sale> newSales = sales.GetRange(salesCountOnLoad, sales.Count - salesCountOnLoad);
+                    foreach (Sale sale in newSales)
                     {
                         StringBuilder itemsBuilder = new StringBuilder();
                         for (int i = 0; i < sale.Basket.Count; i++)
@@ -54,7 +64,7 @@ namespace DigitalKasseSystem.Models
                                 itemsBuilder.Append(",");
                             }
                         }
-                        outputFile.WriteLine($"{sale.SaleNumber};{sale.Total};{sale.PaymentMethod};{sale.StartTime};{sale.EndTime};{itemsBuilder}");
+                        outputFile.WriteLine($"{sale.SaleNumber};{sale.Total};{sale.PaymentMethod};{sale.StartTime};{sale.EndTime};{sale.delivered};{itemsBuilder}");
                     }
                     outputFile.Close();
                 }
@@ -62,7 +72,7 @@ namespace DigitalKasseSystem.Models
             else
             {
                 StreamWriter writer = new StreamWriter(filePath);
-                writer.WriteLine("Ordre nummer;Total;Betalingsmethode;Starttidspunkt;Sluttidspunkt;Vare (varenummere)");
+                writer.WriteLine("Ordre nummer;Total;Betalingsmethode;Starttidspunkt;Sluttidspunkt;Udleveret;Vare (varenummere)");
                 foreach (Sale sale in sales)
                 {
                     StringBuilder itemsBuilder = new StringBuilder();
@@ -74,7 +84,7 @@ namespace DigitalKasseSystem.Models
                             itemsBuilder.Append(",");
                         }
                     }
-                    writer.WriteLine($"{sale.SaleNumber};{sale.Total};{sale.PaymentMethod};{sale.StartTime};{sale.EndTime};{itemsBuilder}");
+                    writer.WriteLine($"{sale.SaleNumber};{sale.Total};{sale.PaymentMethod};{sale.StartTime};{sale.EndTime};{sale.delivered};{itemsBuilder}");
                 }
                 writer.Close();
             }
@@ -93,20 +103,27 @@ namespace DigitalKasseSystem.Models
             while ((line = reader.ReadLine()) != null)
             {
                 string[] parts = line.Split(';');
-                int saleNumber = int.Parse(parts[0]);
-                double total = double.Parse(parts[1]);
-                PaymentMethod payment = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), parts[2]);
-                DateTime startTime = DateTime.Parse(parts[3]);
-                DateTime endTime = DateTime.Parse(parts[4]);
-                List<Item> items = new List<Item>();
-                foreach (string itemPart in parts[5].Split(','))
+                if (parts[0] != "Ordre nummer")
                 {
-                    ItemDescription itemDescription = itemDescriptionRepository.GetItemDescription(int.Parse(itemPart));
-                    Item item = new Item(itemDescription);
-                    items.Add(item);
+                    long saleNumber = long.Parse(parts[0]);
+                    double total = double.Parse(parts[1]);
+                    PaymentMethod payment = (PaymentMethod)Enum.Parse(typeof(PaymentMethod), parts[2]);
+                    DateTime startTime = DateTime.Parse(parts[3]);
+                    DateTime endTime = DateTime.Parse(parts[4]);
+                    bool delivered = bool.Parse(parts[5]);
+                    List<Item> items = new List<Item>();
+                    foreach (string itemPart in parts[6].Split(','))
+                    {
+                        ItemDescription itemDescription = itemDescriptionRepository.GetItemDescription(int.Parse(itemPart));
+                        Item item = new Item(itemDescription);
+                        items.Add(item);
+                    }
+                    Sale sale = new Sale(saleNumber, total, payment, startTime, endTime, items, delivered);
+                    AddSale(sale);
                 }
-                Sale sale = new Sale(saleNumber, total, payment, startTime, endTime, items);
             }
+            reader.Close();
+            salesCountOnLoad = sales.Count;
         }
     }
 }

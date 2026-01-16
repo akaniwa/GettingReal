@@ -27,7 +27,7 @@ namespace DigitalKasseSystem.Views
         public double ReturnAmount
         {
             get { return double.Parse(ReturnAmountLabel.Content.ToString().Replace("Return Amount: ", "").TrimEnd('$')); }
-            set { ReturnAmountLabel.Content = $"Byttepenge: {value.ToString("C2")}"; }
+            set { ReturnAmountLabel.Content = $"{value.ToString("C2")}"; }
         }
 
         private void OKButton_Click(object sender, RoutedEventArgs e)

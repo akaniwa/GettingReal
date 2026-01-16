@@ -5,17 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DigitalKasseSystem.Views"
         mc:Ignorable="d"
-        Title="AmountReturnDialog" Height="300" Width="350">
+        Title="AmountReturnDialog" Height="250" Width="250">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <UniformGrid>
-            <Label Name="ReturnAmountLabel" Content="Byttepenge: 0.00 kr." FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        </UniformGrid>
+        <StackPanel>
+            <Label Content="Byttepenge:" FontSize="40" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Margin="10"/>
+            <Separator/>
+            <Label Name="ReturnAmountLabel" Content="0.00 kr." FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </StackPanel>
         <UniformGrid Grid.Row="1">
-            <Button Content="OK" FontSize="20" Click="OKButton_Click"/>
+            <Button Content="OK" FontSize="20" Click="OKButton_Click" Margin="10"/>
         </UniformGrid>
     </Grid>
 </Window>

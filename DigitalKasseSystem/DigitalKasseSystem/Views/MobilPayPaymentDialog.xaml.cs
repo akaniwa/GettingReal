@@ -12,7 +12,7 @@ namespace DigitalKasseSystem.Views
         {
             amountOwed = amount;
             InitializeComponent();
-            string picPath = IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "mobilpayUldumHal.jpg");
+            string picPath = IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "mobilpayQRl.jpg");
             mobilpayImage.Source = new BitmapImage(new Uri(picPath));
             TotalLabel.Content = $"Total: {amountOwed.ToString("C2")}";
         }

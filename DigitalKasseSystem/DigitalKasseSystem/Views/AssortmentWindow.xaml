@@ -11,23 +11,24 @@
         WindowState="Maximized">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="652*"/>
-            <RowDefinition Height="71*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <UniformGrid Grid.Row="2">
-            <Button Content="Tilføj" FontSize="20" Command="{Binding Path=AddItemDescriptionCommand}" CommandParameter="{Binding}"/>
-            <Button Content="Slet" FontSize="20" Command="{Binding Path=DeleteItemDescriptionCommand}" CommandParameter="{Binding}"/>
+        <UniformGrid Grid.Row="2" Grid.RowSpan="2">
+            <Button Content="Tilføj" FontSize="20" Height="50" Command="{Binding Path=AddItemDescriptionCommand}" CommandParameter="{Binding}" Margin="10"/>
+            <Button Content="Slet" FontSize="20" Height="50" Command="{Binding Path=DeleteItemDescriptionCommand}" CommandParameter="{Binding}" Margin="10"/>
         </UniformGrid>
         <StackPanel Orientation="Horizontal">
             <TextBlock Width="10"/>
-            <Button Name="ReturnButton" Content="🏠" FontSize="35" Width="50" Click="ReturnButton_Click" />
+            <Button Name="ReturnButton" Content="🏠" FontSize="40" Width="75" Height="75" Click="ReturnButton_Click"/>
         </StackPanel>
-        <ListBox Grid.Row="1" ItemsSource="{Binding Path=ItemDescriptionsVM}" Margin="10" FontSize="20" Name="AssortmentListBox" SelectedItem="{Binding SelectedItemDescriptionVM, Mode=TwoWay}">
+        <ListBox Grid.Row="1" ItemsSource="{Binding Path=ItemDescriptionsVM}" Margin="10,10,10,10" FontSize="20" Name="AssortmentListBox" SelectedItem="{Binding SelectedItemDescriptionVM, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
@@ -40,7 +41,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Canvas Grid.Column="1" Grid.Row="1">
+        <Canvas Grid.Column="1" Margin="0,106,0,91" Grid.RowSpan="3">
             <Label Content="Varenummer:" Canvas.Left="79" Canvas.Top="84" FontSize="20"/>
             <Label Content="Billede Sti:" Canvas.Left="80" Canvas.Top="166" FontSize="20"/>
             <Label Content="Navn:" Canvas.Left="78" Canvas.Top="324" FontSize="20"/>

@@ -131,7 +131,7 @@ namespace UnitTest
             mainSaleViewModel.EndSale(PaymentMethod.Kontant);
 
             //Assert
-            Assert.AreEqual(1, saleRepository.GetSalesCount());
+            Assert.AreEqual(1, saleRepository.GetSales().Count);
         }
     }
 }

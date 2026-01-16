@@ -37,8 +37,10 @@ namespace DigitalKasseSystem.Views
             //saleRepository.LoadFromFile(DateTime.Now);
             foreach (Sale sale in saleRepository.GetSales())
             {
-                QuickOrderInstanisiate();
+                //mainSaleViewModel.CurrentSale = sale.ToSaleViewModel();
+                //QuickOrderInstanisiate();
             }
+            Sale.OrderNumber = saleRepository.GetSales().Count + 1;
             DataContext = mainSaleViewModel;
             mainSaleViewModel.NewSale();
             UpdateTotalLabel();
@@ -156,8 +158,11 @@ namespace DigitalKasseSystem.Views
         // Makes new button for the completed ordre
         private void QuickOrderInstanisiate()
         {
-            string saleNumber = Sale.OrderNumber.ToString("D2");
+            if (mainSaleViewModel.CurrentSale.delivered == true)
+                return;
+            string saleNumber = mainSaleViewModel.CurrentSale.SaleNumber.ToString("D2");
             Button saleReferenceButton = new Button();
+            saleReferenceButton.Tag = saleNumber;
             saleReferenceButton.Click += SaleReferenceButton_Click;
             saleReferenceButton.HorizontalContentAlignment = HorizontalAlignment.Left;
             saleReferenceButton.Margin = new Thickness(5);
@@ -167,7 +172,7 @@ namespace DigitalKasseSystem.Views
             Titel.TextAlignment = TextAlignment.Left;
             Titel.Margin = new Thickness(0, 0, 0, 10);
             Titel.FontSize = 20;
-            Titel.Text = ($"Ordre #{saleNumber.ToString()}");
+            Titel.Text = ($"Ordre #{saleNumber.ToString().Substring(saleNumber.Length - 2)}");
 
             TextBlock mainText = new TextBlock();
             mainText.TextAlignment = TextAlignment.Left;
@@ -193,6 +198,9 @@ namespace DigitalKasseSystem.Views
         {
             if (sender is Button button)
             {
+                long saleNumber = long.Parse(button.Tag.ToString());
+                saleRepository.GetSale(saleNumber).delivered = true;
+
                 int separator = QuickOrderWindow.Children.IndexOf(button);
                 QuickOrderWindow.Children.RemoveAt(separator + 1);
                 QuickOrderWindow.Children.Remove(button);
@@ -207,14 +215,15 @@ namespace DigitalKasseSystem.Views
             paymentDialog.ShowDialog();
             if (paymentDialog.DialogResult == true) // If they paid full
             {
-                int saleNumber = int.Parse(DateTime.Now.ToString("ddMMyy") + +Sale.OrderNumber); // Missing internal number
+                long saleNumber = long.Parse(DateTime.Now.ToString("ddMMyy") + saleRepository.GetSales().Count.ToString("D3") + Sale.OrderNumber.ToString("D2")); // Missing internal number
+                mainSaleViewModel.CurrentSale.SaleNumber = saleNumber;
                 double total = mainSaleViewModel.CurrentSale.Total;
                 PaymentMethod paymentMethod = mainSaleViewModel.CurrentSale.Payment;
                 DateTime startTime = mainSaleViewModel.CurrentSale.StartTime;
                 DateTime endTime = DateTime.Now;
                 List<Item> basket = mainSaleViewModel.CurrentSale.Basket;
                 QuickOrderInstanisiate();
-                Sale sale = new Sale(saleNumber, total, paymentMethod, startTime, endTime, basket);
+                Sale sale = new Sale(saleNumber, total, paymentMethod, startTime, endTime, basket, false);
                 saleRepository.AddSale(sale);
 
                 saleRepository.SaveToFile();

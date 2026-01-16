@@ -10,17 +10,21 @@ Height="{x:Static SystemParameters.PrimaryScreenHeight}"
 Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         WindowState="Maximized">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Column="2">
+        <Grid Grid.Column="2" Grid.RowSpan="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
-                <RowDefinition Height="8*"/>
-                <RowDefinition Height="4*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <StackPanel Background="LightGray" Grid.Row="0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
@@ -39,23 +43,23 @@ Width="{x:Static SystemParameters.PrimaryScreenWidth}"
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock Text="" Width="10" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <Button Grid.Row="2" x:Name="EndSaleButton" Content="Afregn" Height="90" FontSize="24" Click="EndSaleButton_Click"/>
-                <Button Grid.Row="2" x:Name="NotEndSaleButton" Content="Annuller" Height="60" FontSize="24" Click="NotEndSaleButton_Click"/>
+                <Button Grid.Row="2" x:Name="EndSaleButton" Content="Afregn" Height="90" FontSize="30" Click="EndSaleButton_Click" Margin="10"/>
+                <Button Grid.Row="2" x:Name="NotEndSaleButton" Content="Annuller" Height="60" FontSize="25" Click="NotEndSaleButton_Click" Margin="10"/>
             </StackPanel>
         </Grid>
-        <WrapPanel Name="MidWrapPanel" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White"/>
-        <Grid>
+        <WrapPanel Name="MidWrapPanel" Grid.Column="1" Background="White" Grid.RowSpan="2"/>
+        <Grid Grid.RowSpan="2">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition/>
-                <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal" Background="LightGray" Grid.Row="0">
-                <Button Name="ReturnButton" Content="🏠" FontSize="35" Width="50" Click="ReturnButton_Click" HorizontalAlignment="Left" />
-                <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center"/>
+                <Button Name="ReturnButton" Content="🏠" FontSize="40" Width="75" Height="75" Margin="5" Click="ReturnButton_Click" HorizontalAlignment="Left"/>
+                <Label Content="Ordre oversigt" FontSize="36" HorizontalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
             </StackPanel>
             <StackPanel x:Name="QuickOrderWindow" Grid.Column="0" Orientation="Vertical" Background="LightGray" Grid.Row="1">
             </StackPanel>
         </Grid>
-        <StackPanel/>
+        <StackPanel Grid.RowSpan="2"/>
     </Grid>
 </Window>

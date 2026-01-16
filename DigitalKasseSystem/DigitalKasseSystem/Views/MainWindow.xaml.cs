@@ -34,11 +34,13 @@ namespace DigitalKasseSystem
             this.Icon = new BitmapImage(new Uri(iconPath));
             InitializeComponent();
             itemDescriptionRepository.LoadFromFile();
+            saleRepository.LoadFromFile(DateTime.Now);
             foreach (ItemDescription item in (itemDescriptionRepository.GetAllDescriptions()))
             {
                 ItemDescriptionsVM.Add(new ItemDescriptionViewModel(item));
             }
 
+            SaleButton.Width = 350;
             SaleButton.Content = new Image
             {
                 Source = new BitmapImage(new Uri(IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "salgButtonImage.png"))),
@@ -46,6 +48,7 @@ namespace DigitalKasseSystem
                 Height = 350
             };
 
+            AssortmentButton.Width = 350;
             AssortmentButton.Content = new Image
             {
                 Source = new BitmapImage(new Uri(IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "sortimentButtonImage.png"))),

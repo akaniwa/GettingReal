@@ -57,8 +57,8 @@ namespace DigitalKasseSystem.ViewModels
 
         public void EndSale(PaymentMethod paymentMethod)
         {
-            long saleNumber = long.Parse(DateTime.Now.ToString("yyMMdd") + saleRepository.GetSalesCount().ToString("D3") + Sale.OrderNumber.ToString("D2"));
-            Sale sale = new Sale(saleNumber, CurrentSale.Total, CurrentSale.Payment, CurrentSale.StartTime, DateTime.Now, CurrentSale.Basket);
+            long saleNumber = long.Parse(DateTime.Now.ToString("yyMMdd") + saleRepository.GetSales().Count.ToString("D3") + Sale.OrderNumber.ToString("D2"));
+            Sale sale = new Sale(saleNumber, CurrentSale.Total, CurrentSale.Payment, CurrentSale.StartTime, DateTime.Now, CurrentSale.Basket, false);
             saleRepository.AddSale(sale);
         }
     }

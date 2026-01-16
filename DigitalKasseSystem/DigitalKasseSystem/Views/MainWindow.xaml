@@ -9,17 +9,28 @@
         Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
         Width="{x:Static SystemParameters.PrimaryScreenWidth}"
         WindowState="Maximized">
-    
-        
+
+
     <Grid>
-        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Label Content="Hovedmenu" FontSize="48" HorizontalAlignment="Center" Margin="20"/>
-            <UniformGrid Rows="2" Columns="2">
-                <Button x:Name="SaleButton" Content="Salg" FontSize="36" Margin="20" Click="SaleButton_Click"/>
-                <Button x:Name="AssortmentButton" Content="Sortiment" FontSize="36" Margin="20" Click="AssortmentButton_Click"/>
-                <Button x:Name="ReportsButton" Content="Rapporter (Ikke implementeret)" FontSize="36" Margin="20" Click="NotImplementedButton_Click"/>
-                <Button x:Name="SettingsButton" Content="Indstillinger (Ikke implementeret)" FontSize="36" Margin="20" Click="NotImplementedButton_Click"/>
-            </UniformGrid>
-        </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+
+        <UniformGrid Grid.Row="0" Grid.ColumnSpan="3">
+            <Label Content="Hovedmenu" FontSize="108" FontWeight="Bold" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="20"/>
+        </UniformGrid>
+
+        <UniformGrid Rows="2" Columns="2" Grid.Row="1" Grid.Column="1" Margin="10">
+            <Button x:Name="AssortmentButton" Width="350" Height="350" Content="Sortiment" FontSize="36" Click="AssortmentButton_Click" />
+            <Button x:Name="SaleButton" Width="350" Height="350" Content="Salg" FontSize="36" Click="SaleButton_Click"/>
+            <Button x:Name="ReportsButton" Width="350" Height="350" Content="Rapporter (Ikke implementeret)" FontSize="36" Click="NotImplementedButton_Click"/>
+            <Button x:Name="SettingsButton" Width="350" Height="350" Content="Indstillinger (Ikke implementeret)" FontSize="36" Click="NotImplementedButton_Click"/>
+        </UniformGrid>
     </Grid>
 </Window>
