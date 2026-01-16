@@ -43,17 +43,13 @@ namespace DigitalKasseSystem
             SaleButton.Width = 350;
             SaleButton.Content = new Image
             {
-                Source = new BitmapImage(new Uri(IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "salgButtonImage.png"))),
-                Width = 350,
-                Height = 350
+                Source = new BitmapImage(new Uri(IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "salgButtonImage.png")))
             };
 
             AssortmentButton.Width = 350;
             AssortmentButton.Content = new Image
             {
-                Source = new BitmapImage(new Uri(IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "sortimentButtonImage.png"))),
-                Width = 350,
-                Height = 350
+                Source = new BitmapImage(new Uri(IOPath.Combine(Directory.GetCurrentDirectory(), "Image", "sortimentButtonImage.png")))
             };
         }
 
